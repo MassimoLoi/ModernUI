@@ -1,0 +1,13 @@
+D:\Projects\_Comp\ModernUI\MetroFramework.Demo\bin\MetroFramework.Demo.exe.config
+D:\Projects\_Comp\ModernUI\MetroFramework.Demo\bin\Data\Books.xml
+D:\Projects\_Comp\ModernUI\MetroFramework.Demo\bin\MetroFramework.Demo.exe
+D:\Projects\_Comp\ModernUI\MetroFramework.Demo\bin\MetroFramework.Demo.pdb
+D:\Projects\_Comp\ModernUI\MetroFramework.Demo\bin\MetroFramework.dll
+D:\Projects\_Comp\ModernUI\MetroFramework.Demo\bin\MetroFramework.pdb
+D:\Projects\_Comp\ModernUI\MetroFramework.Demo\obj\Debug\MetroFramework.Demo.csprojResolveAssemblyReference.cache
+D:\Projects\_Comp\ModernUI\MetroFramework.Demo\obj\Debug\MetroFramework.Demo.MainForm.resources
+D:\Projects\_Comp\ModernUI\MetroFramework.Demo\obj\Debug\MetroFramework.Demo.Properties.Resources.resources
+D:\Projects\_Comp\ModernUI\MetroFramework.Demo\obj\Debug\MetroFramework.Demo.TaskWindowControl.resources
+D:\Projects\_Comp\ModernUI\MetroFramework.Demo\obj\Debug\MetroFramework.Demo.csproj.GenerateResource.Cache
+D:\Projects\_Comp\ModernUI\MetroFramework.Demo\obj\Debug\MetroFramework.Demo.exe
+D:\Projects\_Comp\ModernUI\MetroFramework.Demo\obj\Debug\MetroFramework.Demo.pdb
