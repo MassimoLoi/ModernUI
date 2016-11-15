@@ -21,6 +21,7 @@ Extended Controls supported
 * DateTime Picker
 * DataGrid
 * MessageBox
+* PropertyGrid
 
 Original Controls supported
 ---------------------------
@@ -56,6 +57,7 @@ Screenshots
 ![MetroFramework](http://i.imgur.com/eZE0vdq.png)
 ![MetroFramework](http://i.imgur.com/68FbgXQ.png)
 ![MetroFramework](http://i.imgur.com/ydrfoXH.png)
+![MetroFramework](http://i.imgur.com/R6nphRZ.png)
 
 *Dark*
 
@@ -65,6 +67,7 @@ Screenshots
 ![MetroFramework](http://i.imgur.com/AbXaDFG.png)
 ![MetroFramework](http://i.imgur.com/u4eJ7AN.png)
 ![MetroFramework](http://i.imgur.com/FYGULlb.png)
+![MetroFramework](http://i.imgur.com/SQHS3Zk.png)
 
 License
 -------
