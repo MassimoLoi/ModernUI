@@ -49,14 +49,16 @@ Screenshots
 ----------
 
 *Light*
+
 ![MetroFramework](http://i.imgur.com/LcsRQt6.png)
 ![MetroFramework](http://i.imgur.com/Jl0AeOK.png)
 ![MetroFramework](http://i.imgur.com/zek9B0a.png)
 ![MetroFramework](http://i.imgur.com/eZE0vdq.png)
-![MetroFramework](http://i.imgur.com/68FbgXQ.png
+![MetroFramework](http://i.imgur.com/68FbgXQ.png)
 ![MetroFramework](http://i.imgur.com/ydrfoXH.png)
 
 *Dark*
+
 ![MetroFramework](http://i.imgur.com/xCPKax2.png)
 ![MetroFramework](http://i.imgur.com/kzouwKf.png)
 ![MetroFramework](http://i.imgur.com/oUIfIOg.png)
