@@ -118,6 +118,9 @@
     <Compile Include="Controls\MetroProgressSpinner.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\MetroPropertyGrid.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\MetroRadioButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -143,6 +146,7 @@
     <Compile Include="Controls\MetroUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Design\MetroPropertyGridDesigner.cs" />
     <Compile Include="Design\MetroTabPageDesigner.cs" />
     <Compile Include="Design\MetroProgressSpinnerDesigner.cs" />
     <Compile Include="Design\MetroProgressBarDesigner.cs" />

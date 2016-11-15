@@ -53,11 +53,14 @@ namespace MetroFramework.Components
         /// <param name="e">A ToolStripItemTextRenderEventArgs that contains the event data.</param>
         protected override void OnRenderItemText(ToolStripItemTextRenderEventArgs e)
         {
+            // e.TextFont = MetroFonts.Default(12);
+
             if ((e.ToolStrip is MenuStrip) ||
                 (e.ToolStrip is ToolStrip) ||
                 (e.ToolStrip is ContextMenuStrip) ||
                 (e.ToolStrip is ToolStripDropDownMenu))
             {
+
                 // We set the color depending on the enabled state
                 if (!e.Item.Enabled)
                     e.TextColor = MetroPaint.ForeColor.MenuItem.Disabled(theme);
@@ -93,7 +96,6 @@ namespace MetroFramework.Components
             }
             else
             {
-                e.TextColor = Color.Red;
                 base.OnRenderItemText(e);
             }
         }

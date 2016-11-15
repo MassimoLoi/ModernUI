@@ -54,6 +54,24 @@ namespace MetroFramework.Drawing
                 return Color.FromArgb(204, 204, 204);
             }
 
+            public static class PropertyGrid
+            {
+                public static Color Normal(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(68, 68, 68);
+
+                    return Color.FromArgb(204, 204, 204);
+                }
+
+                public static Color Disabled(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(109, 109, 109);
+
+                    return Color.FromArgb(155, 155, 155);
+                }
+            }
             public static class Button
             {
                 public static Color Normal(MetroThemeStyle theme)
@@ -238,6 +256,25 @@ namespace MetroFramework.Drawing
                     return Color.FromArgb(17, 17, 17);
 
                 return Color.FromArgb(255, 255, 255);
+            }
+
+            public sealed class PropertyGrid
+            {
+                public static Color Normal(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(34, 34, 34);
+
+                    return Color.FromArgb(238, 238, 238);
+                }
+
+                public static Color Disabled(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(80, 80, 80);
+
+                    return Color.FromArgb(204, 204, 204);
+                }
             }
 
             public sealed class Button
@@ -462,6 +499,24 @@ namespace MetroFramework.Drawing
 
         public sealed class ForeColor
         {
+            public sealed class PropertyGrid
+            {
+                public static Color Normal(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(204, 204, 204);
+
+                    return Color.FromArgb(0, 0, 0);
+                }
+
+                public static Color Disabled(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(109, 109, 109);
+
+                    return Color.FromArgb(136, 136, 136);
+                }
+            }
             public sealed class MenuItem
             {
                 public static Color Normal(MetroThemeStyle theme)
