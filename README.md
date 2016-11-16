@@ -22,6 +22,7 @@ Extended Controls supported
 * DataGrid
 * MessageBox
 * PropertyGrid
+* SplitContainer
 
 Original Controls supported
 ---------------------------
