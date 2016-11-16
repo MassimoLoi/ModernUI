@@ -10,6 +10,7 @@ namespace MetroFramework.Controls
     using MetroFramework.Drawing;
     using MetroFramework.Interfaces;
 
+    [ToolboxBitmap(typeof(DataGridView))]
     public partial class MetroGrid : DataGridView, IMetroControl
     {
         #region Interface

@@ -47,6 +47,7 @@ namespace MetroFramework.Controls
 
     [DefaultEvent("Scroll")]
     [DefaultProperty("Value")]
+    [ToolboxBitmap(typeof(ScrollBar))]
     public class MetroScrollBar : Control, IMetroControl
     {
         #region Interface

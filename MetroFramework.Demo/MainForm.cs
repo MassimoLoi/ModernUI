@@ -23,6 +23,8 @@ namespace MetroFramework.Demo
 
             mlSelectedColor.Text = metroStyleManager.Style.ToString();
             mlSelectedTheme.Text = metroStyleManager.Theme.ToString();
+            mlHotTrack.Text = this.metroTabControl1.HotTrack.ToString();
+            //metroToggle4.
         }
 
         private void metroTileSwitch_Click(object sender, EventArgs e)
@@ -76,6 +78,20 @@ namespace MetroFramework.Demo
         {
             contextMenuStrip1.Show(metroButton6, new Point(0, metroButton6.Height));
         }
-  
+
+        private void metroButton1_Click(object sender, EventArgs e)
+        {
+            MetroTaskWindow.ShowTaskWindow(this, "SubControl in TaskWindow", new TaskWindowControl(), 10); 
+        }
+
+        private void metroButton2_Click(object sender, EventArgs e)
+        {
+            MetroMessageBox.Show(this, "This is a sample MetroMessagebox `Yes` and `No` button", "MetroMessagebox", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        }
+
+        private void metroButton3_Click(object sender, EventArgs e)
+        {
+            MetroMessageBox.Show(this, "This is a sample MetroMessagebox `Retry` and `Cancel` button.  With warning style.", "MetroMessagebox", MessageBoxButtons.RetryCancel, MessageBoxIcon.Warning);
+        }
     }
 }

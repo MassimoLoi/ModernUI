@@ -54,6 +54,25 @@ namespace MetroFramework.Drawing
                 return Color.FromArgb(204, 204, 204);
             }
 
+            public static class SplitContainer
+            {
+                public static Color Normal(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(68, 68, 68);
+
+                    return Color.FromArgb(204, 204, 204);
+                }
+
+                public static Color Disabled(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(109, 109, 109);
+
+                    return Color.FromArgb(155, 155, 155);
+                }
+            }
+
             public static class PropertyGrid
             {
                 public static Color Normal(MetroThemeStyle theme)
@@ -258,6 +277,24 @@ namespace MetroFramework.Drawing
                 return Color.FromArgb(255, 255, 255);
             }
 
+            public static class SplitContainer
+            {
+                public static Color Normal(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(68, 68, 68);
+
+                    return Color.FromArgb(204, 204, 204);
+                }
+
+                public static Color Disabled(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(109, 109, 109);
+
+                    return Color.FromArgb(155, 155, 155);
+                }
+            }
             public sealed class PropertyGrid
             {
                 public static Color Normal(MetroThemeStyle theme)

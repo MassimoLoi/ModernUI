@@ -33,7 +33,8 @@ namespace MetroFramework.Controls
     using MetroFramework.Drawing;
     using MetroFramework.Interfaces;
 
-     public class MetroTextBox : Control, IMetroControl
+    [ToolboxBitmap(typeof(TextBox))]
+    public class MetroTextBox : Control, IMetroControl
     {
         #region Interface
 

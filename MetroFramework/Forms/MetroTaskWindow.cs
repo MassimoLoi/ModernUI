@@ -62,6 +62,7 @@ namespace MetroFramework.Forms
             }
 
             singletonWindow.Show();
+
         }
 
         public static bool IsVisible()
@@ -118,6 +119,12 @@ namespace MetroFramework.Forms
         public MetroTaskWindow()
         {
             controlContainer = new MetroPanel();
+
+            controlContainer.HorizontalScrollbar = false;
+            controlContainer.HorizontalScrollbarSize = 0;
+            controlContainer.VerticalScrollbar = false;
+            controlContainer.VerticalScrollbarSize = 0;
+
             Controls.Add(controlContainer);
         }
 
@@ -125,7 +132,9 @@ namespace MetroFramework.Forms
             : this()
         {
             controlContainer.Controls.Add(userControl);
+
             userControl.Dock = DockStyle.Fill;
+            
             closeTime = duration * 500;
 
             if (closeTime > 0)

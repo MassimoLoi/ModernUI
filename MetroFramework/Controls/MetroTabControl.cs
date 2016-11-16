@@ -1,8 +1,8 @@
 /**
- * MetroFramework - Modern UI for WinForms
+ * MetroFramework - ExtendedRendering - Modern UI for WinForms
  * 
  * The MIT License (MIT)
- * Copyright (c) 2011 Sven Walter, http://github.com/viperneo
+ * Copyright (c) 2016 Angelo Cresta, http://quarztech.com
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy of 
  * this software and associated documentation files (the "Software"), to deal in the 
@@ -69,6 +69,7 @@ namespace MetroFramework.Controls
     #region MetroTabPageCollection
 
     [ToolboxItem(false)]
+    [ToolboxBitmap(typeof(TabControl))]
     [Editor(typeof(MetroTabPageCollectionEditor), typeof(UITypeEditor))]
     public class MetroTabPageCollection : TabControl.TabPageCollection
     {
@@ -255,6 +256,7 @@ namespace MetroFramework.Controls
             DrawTabBottomBorder(SelectedIndex, e.Graphics);
             DrawTab(SelectedIndex, e.Graphics);
             DrawTabSelected(SelectedIndex, e.Graphics);
+
         }
 
         private void DrawTabBottomBorder(int index, Graphics graphics)
@@ -283,6 +285,7 @@ namespace MetroFramework.Controls
             }
         }
 
+
         private Size MeasureText(string text)
         {
             Size preferredSize;
@@ -300,9 +303,15 @@ namespace MetroFramework.Controls
         private void DrawTab(int index, Graphics graphics)
         {
             Color foreColor;
+            bool bHot = false;
             var backColor = Parent != null ? Parent.BackColor : MetroPaint.BackColor.Form(Theme);
             var tabPage = TabPages[index];
             var tabRect = GetTabRect(index);
+
+            if (tabPage.Tag != null)
+            {
+                bHot = (bool)tabPage.Tag;
+            }
 
             if (!Enabled)
             {
@@ -310,7 +319,14 @@ namespace MetroFramework.Controls
             }
             else
             {
-                foreColor = !useStyleColors ? MetroPaint.ForeColor.TabControl.Normal(Theme) : MetroPaint.GetStyleColor(Style);
+                if (bHot)
+                {
+                    foreColor = MetroPaint.GetStyleColor(Style);
+                }
+                else
+                {
+                    foreColor = !useStyleColors ? MetroPaint.ForeColor.TabControl.Normal(Theme) : MetroPaint.GetStyleColor(Style);
+                }
             }
 
             if (index == 0)
@@ -394,6 +410,37 @@ namespace MetroFramework.Controls
 
             base.OnMouseWheel(e);
         }
+
+        protected override void OnMouseMove(System.Windows.Forms.MouseEventArgs e)
+        {
+            base.OnMouseMove(e);
+            Graphics g = this.CreateGraphics();
+            for (int i = 0; i < this.TabCount; i++)
+            {
+                if (this.GetTabRect(i).Contains(e.X, e.Y))
+                {
+                    if (this.HotTrack)
+                    {
+                        this.TabPages[i].Tag = true;
+                    }
+                }
+                else
+                {
+                    this.TabPages[i].Tag = false;
+                }
+            }
+            Invalidate();
+        }
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            base.OnMouseLeave(e);
+            for (int i = 0; i < this.TabCount; i++)
+            {
+                this.TabPages[i].Tag = false;
+            }
+            Invalidate();
+        }
+
 
         #endregion
     }

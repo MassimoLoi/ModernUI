@@ -32,6 +32,8 @@ using MetroFramework.Drawing;
 
 namespace MetroFramework.Controls
 {
+    [ToolboxBitmap(typeof(UserControl))]
+
     public class MetroUserControl : UserControl, IMetroControl
     {
         #region Interface

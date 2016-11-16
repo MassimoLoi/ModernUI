@@ -127,6 +127,9 @@
     <Compile Include="Controls\MetroScrollBar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\MetroSplitContainer.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\MetroTabControl.cs" />
     <Compile Include="Controls\MetroTabPage.cs">
       <SubType>Component</SubType>
