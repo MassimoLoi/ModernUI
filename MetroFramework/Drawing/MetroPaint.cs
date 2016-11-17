@@ -324,10 +324,7 @@ namespace MetroFramework.Drawing
             {
                 public static Color Normal(MetroThemeStyle theme)
                 {
-                    if (theme == MetroThemeStyle.Dark)
-                        return Color.FromArgb(17, 17, 17);
-
-                    return Color.FromArgb(255, 255, 255);
+                   return  BorderColor.SplitContainer.Normal(theme);
                 }
 
                 public static Color Disabled(MetroThemeStyle theme)
@@ -1111,7 +1108,7 @@ namespace MetroFramework.Drawing
                     return MetroPaint.GetStyleColor(style);
                 }
 
-               public static Color StatusStripText(MetroThemeStyle theme, MetroColorStyle style)
+                public static Color StatusStripText(MetroThemeStyle theme, MetroColorStyle style)
                 {
                     return MetroPaint.ForeColor.MenuItem.Normal(theme);
                 }
@@ -1239,7 +1236,7 @@ namespace MetroFramework.Drawing
 
                 case MetroColorStyle.White:
                     return MetroPens.White;
-                
+
                 case MetroColorStyle.Silver:
                     return MetroPens.Silver;
 
@@ -1339,7 +1336,7 @@ namespace MetroFramework.Drawing
             return GetTextFormatFlags(textAlign, false);
         }
 
-        public static TextFormatFlags GetTextFormatFlags(ContentAlignment textAlign,bool WrapToLine)
+        public static TextFormatFlags GetTextFormatFlags(ContentAlignment textAlign, bool WrapToLine)
         {
             TextFormatFlags controlFlags = TextFormatFlags.Default;
 

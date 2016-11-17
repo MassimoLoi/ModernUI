@@ -72,7 +72,7 @@ namespace MetroFramework.Controls
         public MetroStyleManager StyleManager
         {
             get { return metroStyleManager; }
-            set { metroStyleManager = value; }
+            set { metroStyleManager = value; InitColors(); }
         }
 
         #endregion
@@ -156,13 +156,15 @@ namespace MetroFramework.Controls
             this.LineColor = borderColor;
             this.CategoryForeColor = foreColor;
             this.ForeColor = ForeColor;
+
+            Invalidate();
+            Update();
                       
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            InitColors();
             e.Graphics.FillRectangle(new SolidBrush(backColor), e.ClipRectangle);
 
         }
@@ -171,7 +173,6 @@ namespace MetroFramework.Controls
         {
             base.OnPaintBackground(e);
             e.Graphics.FillRectangle(new SolidBrush(backColor), e.ClipRectangle);
-            //
         }
 
         #endregion

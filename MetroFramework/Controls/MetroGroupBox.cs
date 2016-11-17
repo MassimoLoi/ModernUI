@@ -136,6 +136,14 @@ namespace MetroFramework.Controls
             set { metroLabelWeight = value; Refresh(); }
         }
 
+        private bool useStyleColors = false;
+        [Category("Metro Appearance")]
+        public bool UseStyleColors
+        {
+            get { return useStyleColors; }
+            set { useStyleColors = value; Invalidate(); }
+        }
+
         #endregion
 
         #region ... Constructor ...
@@ -158,7 +166,7 @@ namespace MetroFramework.Controls
             this.BackColor = MetroPaint.BackColor.GroupBox.Normal(Theme);
 
             //set ForeColor
-            this.ForeColor = MetroPaint.ForeColor.GroupBox.Normal(Theme);
+            this.ForeColor = !useStyleColors ? MetroPaint.ForeColor.GroupBox.Normal(Theme) : MetroPaint.GetStyleColor(Style);
 
             //reset FlatStyle
             if (this.FlatStyle == FlatStyle.System) this.FlatStyle = FlatStyle.Standard;
