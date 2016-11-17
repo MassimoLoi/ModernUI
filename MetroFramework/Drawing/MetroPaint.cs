@@ -54,6 +54,30 @@ namespace MetroFramework.Drawing
                 return Color.FromArgb(204, 204, 204);
             }
 
+            public static class GroupBox
+            {
+                public static Color Normal(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(68, 68, 68);
+
+                    return Color.FromArgb(204, 204, 204);
+                }
+
+                public static Color Shadow(MetroThemeStyle theme)
+                {
+                    return ControlPaint.Light(Normal(theme));
+                }
+
+                public static Color Disabled(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(109, 109, 109);
+
+                    return Color.FromArgb(155, 155, 155);
+                }
+            }
+
             public static class SplitContainer
             {
                 public static Color Normal(MetroThemeStyle theme)
@@ -277,14 +301,33 @@ namespace MetroFramework.Drawing
                 return Color.FromArgb(255, 255, 255);
             }
 
+            public static class GroupBox
+            {
+                public static Color Normal(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(17, 17, 17);
+
+                    return Color.FromArgb(255, 255, 255);
+                }
+
+                public static Color Disabled(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(109, 109, 109);
+
+                    return Color.FromArgb(155, 155, 155);
+                }
+            }
+
             public static class SplitContainer
             {
                 public static Color Normal(MetroThemeStyle theme)
                 {
                     if (theme == MetroThemeStyle.Dark)
-                        return Color.FromArgb(68, 68, 68);
+                        return Color.FromArgb(17, 17, 17);
 
-                    return Color.FromArgb(204, 204, 204);
+                    return Color.FromArgb(255, 255, 255);
                 }
 
                 public static Color Disabled(MetroThemeStyle theme)
@@ -536,6 +579,25 @@ namespace MetroFramework.Drawing
 
         public sealed class ForeColor
         {
+
+            public static class GroupBox
+            {
+                public static Color Normal(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(255, 255, 255);
+
+                    return Color.FromArgb(0, 0, 0);
+                }
+
+                public static Color Disabled(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(109, 109, 109);
+
+                    return Color.FromArgb(155, 155, 155);
+                }
+            }
             public sealed class PropertyGrid
             {
                 public static Color Normal(MetroThemeStyle theme)
@@ -828,6 +890,235 @@ namespace MetroFramework.Drawing
                 }
             }
         }
+
+        public sealed class ColorTable
+        {
+            public sealed class Grip
+            {
+                public static Color Dark(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return BackColor.Form(theme);
+                }
+
+                public static Color Light(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
+                }
+            }
+
+            public sealed class Separator
+            {
+                public static Color Dark(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return MetroPaint.BackColor.Form(theme);
+                }
+
+                public static Color Light(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
+                }
+            }
+
+            public sealed class Button
+            {
+                public static Color ButtonSelectedBorder(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return MetroPaint.GetStyleColor(style);
+                }
+
+                public static Color ButtonSelectedGradientBegin(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return MetroPaint.GetStyleColor(style);
+                }
+
+                public static Color ButtonSelectedGradientMiddle(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return MetroPaint.GetStyleColor(style);
+                }
+
+                public static Color ButtonSelectedGradientEnd(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return MetroPaint.GetStyleColor(style);
+                }
+
+                public static Color ButtonPressedGradientBegin(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return MetroPaint.GetStyleColor(style);
+                }
+
+                public static Color ButtonPressedGradientMiddle(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return MetroPaint.GetStyleColor(style);
+                }
+
+                public static Color ButtonPressedGradientEnd(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return MetroPaint.GetStyleColor(style);
+                }
+
+                public static Color ButtonCheckedGradientBegin(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return Color.Transparent;
+                }
+
+                public static Color ButtonCheckedGradientMiddle(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return Color.Transparent;
+                }
+
+                public static Color ButtonCheckedGradientEnd(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return Color.Transparent;
+                }
+
+                public static Color OverflowButtonGradientBegin(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
+                }
+
+                public static Color OverflowButtonGradientMiddle(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
+                }
+
+                public static Color OverflowButtonGradientEnd(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
+                }
+            }
+
+            public sealed class MenuStrip
+            {
+                public static Color MenuStripGradientBegin(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
+                }
+
+                public static Color MenuStripGradientEnd(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
+                }
+
+                public static Color MenuItemSelectedGradientBegin(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return MetroPaint.GetStyleColor(style);
+                }
+
+                public static Color MenuItemSelectedGradientEnd(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return MetroPaint.GetStyleColor(style);
+                }
+
+                public static Color MenuItemPressedGradientBegin(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return MetroPaint.GetStyleColor(style);
+                }
+
+                public static Color MenuItemPressedGradientEnd(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return MetroPaint.GetStyleColor(style);
+                }
+
+                public static Color MenuItemSelected(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return MetroPaint.GetStyleColor(style);
+                }
+
+                public static Color MenuBorder(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return MetroPaint.BackColor.Form(theme);
+                }
+
+                public static Color MenuItemBorder(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return MetroPaint.GetStyleColor(style);
+                }
+                public static Color MenuItemText(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return MetroPaint.ForeColor.MenuItem.Normal(theme);
+                }
+            }
+
+            public sealed class ToolStrip
+            {
+                public static Color ToolStripDropDownBackground(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
+                }
+
+                public static Color ToolStripGradientBegin(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
+                }
+
+                public static Color ToolStripGradientMiddle(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
+                }
+
+                public static Color ToolStripGradientEnd(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
+                }
+
+                public static Color ToolStripPanelGradientBegin(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
+                }
+
+                public static Color ToolStripPanelGradientEnd(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
+                }
+
+                public static Color ToolStripBorder(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
+                }
+                public static Color ToolStripText(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return MetroPaint.ForeColor.MenuItem.Normal(theme);
+                }
+            }
+
+            public sealed class Image
+            {
+                public static Color ImageMarginGradientBegin(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
+                }
+
+                public static Color ImageMarginGradientMiddle(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
+                }
+
+                public static Color ImageMarginGradientEnd(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
+                }
+            }
+
+            public sealed class StatusStrip
+            {
+                public static Color StatusStripGradientBegin(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return MetroPaint.GetStyleColor(style);
+                }
+
+                public static Color StatusStripGradientEnd(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return MetroPaint.GetStyleColor(style);
+                }
+
+               public static Color StatusStripText(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return MetroPaint.ForeColor.MenuItem.Normal(theme);
+                }
+            }
+
+        }
+
 
         #region Helper Methods
 

@@ -44,194 +44,210 @@ namespace MetroFramework.Components
             _style = Style;
         }
 
+        #region ... MenuStrip ...
         public override Color MenuStripGradientBegin
         {
-            get { return ControlPaint.Light(MetroPaint.BackColor.Form(_theme)); }
+            get { return MetroPaint.ColorTable.MenuStrip.MenuStripGradientBegin(_theme, _style); }
         }
 
         public override Color MenuStripGradientEnd
         {
-            get { return ControlPaint.Light(MetroPaint.BackColor.Form(_theme)); }
+            get { return MetroPaint.ColorTable.MenuStrip.MenuStripGradientEnd(_theme, _style); }
         }
-
-        public override Color ToolStripDropDownBackground
-        {
-            get { return ControlPaint.Light(MetroPaint.BackColor.Form(_theme)); }
-        }
-
-        public override Color ImageMarginGradientBegin
-        {
-            get { return ControlPaint.Light(MetroPaint.BackColor.Form(_theme)); }
-        }
-
-        public override Color ImageMarginGradientMiddle
-        {
-            get { return ControlPaint.Light(MetroPaint.BackColor.Form(_theme)); }
-        }
-
-        public override Color ImageMarginGradientEnd
-        {
-            get { return ControlPaint.Light(MetroPaint.BackColor.Form(_theme)); }
-        }
-
         public override Color MenuItemSelectedGradientBegin
         {
-            get { return MetroPaint.GetStyleColor(_style); }
+            get { return MetroPaint.ColorTable.MenuStrip.MenuItemSelectedGradientBegin(_theme, _style); }
         }
 
         public override Color MenuItemSelectedGradientEnd
         {
-            get { return MetroPaint.GetStyleColor(_style); }
+            get { return MetroPaint.ColorTable.MenuStrip.MenuItemSelectedGradientEnd(_theme, _style); }
         }
 
         public override Color MenuItemPressedGradientBegin
         {
-            get { return MetroPaint.GetStyleColor(_style); }
+            get { return MetroPaint.ColorTable.MenuStrip.MenuItemPressedGradientBegin(_theme, _style); }
         }
 
         public override Color MenuItemPressedGradientEnd
         {
-            get { return MetroPaint.GetStyleColor(_style); }
+            get { return MetroPaint.ColorTable.MenuStrip.MenuItemPressedGradientEnd(_theme, _style); }
         }
 
         public override Color MenuItemSelected
         {
-            get { return MetroPaint.GetStyleColor(_style); }
+            get { return MetroPaint.ColorTable.MenuStrip.MenuItemSelected(_theme, _style); }
         }
 
         public override Color MenuBorder
         {
-            get { return MetroPaint.BackColor.Form(_theme); }
+            get { return MetroPaint.ColorTable.MenuStrip.MenuBorder(_theme, _style); }
         }
 
         public override Color MenuItemBorder
         {
-            get { return MetroPaint.GetStyleColor(_style); }
+            get { return MetroPaint.ColorTable.MenuStrip.MenuItemBorder(_theme, _style); }
         }
+        #endregion
 
-        public override Color ButtonSelectedBorder
-        {
-            get { return MetroPaint.GetStyleColor(_style); }
-        }
+        #region ... ToolStrip ...
 
-        public override Color ButtonSelectedGradientBegin
+        public override Color ToolStripDropDownBackground
         {
-            get { return MetroPaint.GetStyleColor(_style); }
-        }
-
-        public override Color ButtonSelectedGradientMiddle
-        {
-            get { return MetroPaint.GetStyleColor(_style); }
-        }
-
-        public override Color ButtonSelectedGradientEnd
-        {
-            get { return MetroPaint.GetStyleColor(_style); }
-        }
-
-        public override Color ButtonPressedGradientBegin
-        {
-            get { return MetroPaint.GetStyleColor(_style); }
-        }
-
-        public override Color ButtonPressedGradientMiddle
-        {
-            get { return MetroPaint.GetStyleColor(_style); }
-        }
-
-        public override Color ButtonPressedGradientEnd
-        {
-            get { return MetroPaint.GetStyleColor(_style); }
-        }
-
-        public override Color ButtonCheckedGradientBegin
-        {
-            get { return Color.Transparent; }
-        }
-
-        public override Color ButtonCheckedGradientMiddle
-        {
-            get {  return Color.Transparent; }
-        }
-
-        public override Color ButtonCheckedGradientEnd
-        {
-            get {  return Color.Transparent; }
-        }
-
-        public override Color StatusStripGradientBegin
-        {
-            get { return MetroPaint.GetStyleColor(_style); }
-        }
-
-        public override Color StatusStripGradientEnd
-        {
-            get { return MetroPaint.GetStyleColor(_style); }
+            get { return MetroPaint.ColorTable.ToolStrip.ToolStripDropDownBackground(_theme, _style); }
         }
 
         public override Color ToolStripGradientBegin
         {
-            get { return ControlPaint.Light(MetroPaint.BackColor.Form(_theme)); }
+            get { return MetroPaint.ColorTable.ToolStrip.ToolStripGradientBegin(_theme, _style); }
         }
 
         public override Color ToolStripGradientMiddle
         {
-            get { return ControlPaint.Light(MetroPaint.BackColor.Form(_theme)); }
+            get { return MetroPaint.ColorTable.ToolStrip.ToolStripGradientMiddle(_theme, _style); }
         }
 
         public override Color ToolStripGradientEnd
         {
-            get { return ControlPaint.Light(MetroPaint.BackColor.Form(_theme)); }
+            get { return MetroPaint.ColorTable.ToolStrip.ToolStripGradientEnd(_theme, _style); }
         }
 
         public override Color ToolStripPanelGradientBegin
         {
-            get { return ControlPaint.Light(MetroPaint.BackColor.Form(_theme)); }
+            get { return MetroPaint.ColorTable.ToolStrip.ToolStripPanelGradientBegin(_theme, _style); }
         }
 
         public override Color ToolStripPanelGradientEnd
         {
-            get { return ControlPaint.Light(MetroPaint.BackColor.Form(_theme)); }
+            get { return MetroPaint.ColorTable.ToolStrip.ToolStripPanelGradientEnd(_theme, _style); }
         }
 
         public override Color ToolStripBorder
         {
-            get { return ControlPaint.Light(MetroPaint.BackColor.Form(_theme)); }
+            get { return MetroPaint.ColorTable.ToolStrip.ToolStripBorder(_theme, _style); }
+        }
+        #endregion
+
+        #region ... Image ...
+        public override Color ImageMarginGradientBegin
+        {
+            get { return MetroPaint.ColorTable.Image.ImageMarginGradientBegin(_theme, _style); }
         }
 
-        public override Color SeparatorDark
+        public override Color ImageMarginGradientMiddle
         {
-            get { return MetroPaint.BackColor.Form(_theme); }
+            get { return MetroPaint.ColorTable.Image.ImageMarginGradientMiddle(_theme, _style); }
         }
 
-        public override Color SeparatorLight
+        public override Color ImageMarginGradientEnd
         {
-            get { return ControlPaint.Light(MetroPaint.BackColor.Form(_theme)); }
+            get { return MetroPaint.ColorTable.Image.ImageMarginGradientEnd(_theme, _style); }
         }
 
-        public override Color GripDark
+        #endregion
+
+        #region ... Button ...
+        public override Color ButtonSelectedBorder
         {
-            get { return MetroPaint.BackColor.Form(_theme); }
+            get { return MetroPaint.ColorTable.Button.ButtonSelectedBorder(_theme, _style); }
         }
 
-        public override Color GripLight
+        public override Color ButtonSelectedGradientBegin
         {
-            get { return ControlPaint.Light(MetroPaint.BackColor.Form(_theme)); }
+            get { return MetroPaint.ColorTable.Button.ButtonSelectedGradientBegin(_theme, _style); }
+        }
+
+        public override Color ButtonSelectedGradientMiddle
+        {
+            get { return MetroPaint.ColorTable.Button.ButtonSelectedGradientMiddle(_theme, _style); }
+        }
+
+        public override Color ButtonSelectedGradientEnd
+        {
+            get { return MetroPaint.ColorTable.Button.ButtonSelectedGradientEnd(_theme, _style); }
+        }
+
+        public override Color ButtonPressedGradientBegin
+        {
+            get { return MetroPaint.ColorTable.Button.ButtonPressedGradientBegin(_theme, _style); }
+        }
+
+        public override Color ButtonPressedGradientMiddle
+        {
+            get { return MetroPaint.ColorTable.Button.ButtonPressedGradientMiddle(_theme, _style); }
+        }
+
+        public override Color ButtonPressedGradientEnd
+        {
+            get { return MetroPaint.ColorTable.Button.ButtonPressedGradientEnd(_theme, _style); }
+        }
+
+        public override Color ButtonCheckedGradientBegin
+        {
+            get { return MetroPaint.ColorTable.Button.ButtonCheckedGradientBegin(_theme, _style); }
+        }
+
+        public override Color ButtonCheckedGradientMiddle
+        {
+            get {  return MetroPaint.ColorTable.Button.ButtonCheckedGradientMiddle(_theme, _style); }
+        }
+
+        public override Color ButtonCheckedGradientEnd
+        {
+            get {  return MetroPaint.ColorTable.Button.ButtonCheckedGradientEnd(_theme, _style); }
         }
 
         public override Color OverflowButtonGradientBegin
         {
-            get { return ControlPaint.Light(MetroPaint.BackColor.Form(_theme)); }
+            get { return MetroPaint.ColorTable.Button.OverflowButtonGradientBegin(_theme, _style); }
         }
 
         public override Color OverflowButtonGradientMiddle
         {
-            get { return ControlPaint.Light(MetroPaint.BackColor.Form(_theme)); }
+            get { return MetroPaint.ColorTable.Button.OverflowButtonGradientMiddle(_theme, _style); }
         }
 
         public override Color OverflowButtonGradientEnd
         {
-            get { return ControlPaint.Light(MetroPaint.BackColor.Form(_theme)); }
+            get { return MetroPaint.ColorTable.Button.OverflowButtonGradientEnd(_theme, _style); }
         }
+        #endregion
+
+        #region ... StatusStrip ...
+        public override Color StatusStripGradientBegin
+        {
+            get { return MetroPaint.ColorTable.StatusStrip.StatusStripGradientBegin(_theme, _style); }
+        }
+
+        public override Color StatusStripGradientEnd
+        {
+            get { return MetroPaint.ColorTable.StatusStrip.StatusStripGradientEnd(_theme, _style); }
+        }
+
+        #endregion
+
+        #region ... Misc ...
+
+        public override Color SeparatorDark
+        {
+            get { return MetroPaint.ColorTable.Separator.Dark(_theme, _style); }
+        }
+
+        public override Color SeparatorLight
+        {
+            get { return MetroPaint.ColorTable.Separator.Light(_theme,_style); }
+        }
+
+        public override Color GripDark
+        {
+            get { return MetroPaint.ColorTable.Grip.Dark(_theme,_style); }
+        }
+
+        public override Color GripLight
+        {
+            get { return ControlPaint.Light(MetroPaint.ColorTable.Grip.Light(_theme,_style)); }
+        }
+
+        #endregion
     }
 }

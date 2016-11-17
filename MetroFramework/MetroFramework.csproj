@@ -103,6 +103,9 @@
     <Compile Include="Controls\MetroGrid.designer.cs">
       <DependentUpon>MetroGrid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MetroGroupBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\MetroLabel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -149,6 +152,7 @@
     <Compile Include="Controls\MetroUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Design\MetroGroupBoxDesigner.cs" />
     <Compile Include="Design\MetroPropertyGridDesigner.cs" />
     <Compile Include="Design\MetroTabPageDesigner.cs" />
     <Compile Include="Design\MetroProgressSpinnerDesigner.cs" />
@@ -160,6 +164,7 @@
     <Compile Include="Design\MetroTabControlDesigner.cs" />
     <Compile Include="Design\MetroTextBoxDesigner.cs" />
     <Compile Include="Design\MetroTileDesigner.cs" />
+    <Compile Include="Drawing\MetroDrawingMethods.cs" />
     <Compile Include="Drawing\MetroPaint.cs" />
     <Compile Include="Forms\MetroMessageBox.cs">
       <SubType>Form</SubType>

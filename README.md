@@ -23,6 +23,7 @@ Extended Controls supported
 * MessageBox
 * PropertyGrid
 * SplitContainer
+* GroupBox
 
 Original Controls supported
 ---------------------------

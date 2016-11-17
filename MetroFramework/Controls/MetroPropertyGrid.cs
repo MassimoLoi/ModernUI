@@ -79,13 +79,6 @@ namespace MetroFramework.Controls
 
         #region Fields
 
-        private bool useStyleColors = false;
-        [Category("Metro Appearance")]
-        public bool UseStyleColors
-        {
-            get { return useStyleColors; }
-            set { useStyleColors = value; }
-        }
 
         [Browsable(false)]
         public override Font Font
@@ -150,7 +143,7 @@ namespace MetroFramework.Controls
             }
             else
             {
-                foreColor = !useStyleColors ? MetroPaint.ForeColor.PropertyGrid.Normal(Theme) : MetroPaint.GetStyleColor(Style);
+                foreColor = MetroPaint.ForeColor.PropertyGrid.Normal(Theme);
                 backColor = MetroPaint.BackColor.PropertyGrid.Normal(Theme);
                 borderColor = MetroPaint.BorderColor.PropertyGrid.Normal(Theme);
             }

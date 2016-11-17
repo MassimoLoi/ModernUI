@@ -93,5 +93,6 @@ namespace MetroFramework.Demo
         {
             MetroMessageBox.Show(this, "This is a sample MetroMessagebox `Retry` and `Cancel` button.  With warning style.", "MetroMessagebox", MessageBoxButtons.RetryCancel, MessageBoxIcon.Warning);
         }
+
     }
 }
