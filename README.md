@@ -24,6 +24,7 @@ Extended Controls supported
 * PropertyGrid
 * SplitContainer
 * GroupBox
+* KnobControl
 
 Original Controls supported
 ---------------------------
@@ -59,7 +60,7 @@ Screenshots
 ![MetroFramework](http://i.imgur.com/eZE0vdq.png)
 ![MetroFramework](http://i.imgur.com/68FbgXQ.png)
 ![MetroFramework](http://i.imgur.com/ydrfoXH.png)
-![MetroFramework](http://i.imgur.com/R6nphRZ.png)
+![MetroFramework](http://i.imgur.com/dQQrIXP.png)
 
 *Dark*
 
@@ -69,7 +70,7 @@ Screenshots
 ![MetroFramework](http://i.imgur.com/AbXaDFG.png)
 ![MetroFramework](http://i.imgur.com/u4eJ7AN.png)
 ![MetroFramework](http://i.imgur.com/FYGULlb.png)
-![MetroFramework](http://i.imgur.com/SQHS3Zk.png)
+![MetroFramework](http://i.imgur.com/AP7NvaQ.png)
 
 License
 -------

@@ -106,6 +106,9 @@
     <Compile Include="Controls\MetroGroupBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\MetroKnobControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\MetroLabel.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -54,6 +54,14 @@ namespace MetroFramework.Drawing
                 return Color.FromArgb(204, 204, 204);
             }
 
+            public static Color KnobControl(MetroThemeStyle theme)
+            {
+                if (theme == MetroThemeStyle.Dark)
+                    return Color.FromArgb(68, 68, 68);
+
+                return Color.FromArgb(204, 204, 204);
+            }
+
             public static class GroupBox
             {
                 public static Color Normal(MetroThemeStyle theme)
@@ -301,6 +309,14 @@ namespace MetroFramework.Drawing
                 return Color.FromArgb(255, 255, 255);
             }
 
+            public static Color KnobControl(MetroThemeStyle theme)
+            {
+                if (theme == MetroThemeStyle.Dark)
+                    return Color.FromArgb(17, 17, 17);
+
+                return Color.FromArgb(255, 255, 255);
+            }
+
             public static class GroupBox
             {
                 public static Color Normal(MetroThemeStyle theme)
@@ -324,7 +340,7 @@ namespace MetroFramework.Drawing
             {
                 public static Color Normal(MetroThemeStyle theme)
                 {
-                   return  BorderColor.SplitContainer.Normal(theme);
+                    return BorderColor.SplitContainer.Normal(theme);
                 }
 
                 public static Color Disabled(MetroThemeStyle theme)
@@ -576,6 +592,14 @@ namespace MetroFramework.Drawing
 
         public sealed class ForeColor
         {
+
+            public static Color KnobControl(MetroThemeStyle theme)
+            {
+                if (theme == MetroThemeStyle.Dark)
+                    return Color.FromArgb(170, 170, 170);
+
+                return Color.FromArgb(0, 0, 0);
+            }
 
             public static class GroupBox
             {

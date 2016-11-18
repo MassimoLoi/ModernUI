@@ -14,7 +14,7 @@ namespace MetroFramework.Demo
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
-            //Application.Run(new MainForm2());
+            Application.Run(new DemoForm());
         }
     }
 }

@@ -56,7 +56,8 @@ namespace MetroFramework.Forms
         }
 
         private MetroStyleManager metroStyleManager = null;
-        [Browsable(false)]
+        [Browsable(true)]
+        [Category("Metro Appearance")]
         public MetroStyleManager StyleManager
         {
             get { return metroStyleManager; }

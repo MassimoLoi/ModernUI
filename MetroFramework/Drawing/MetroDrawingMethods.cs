@@ -1,4 +1,27 @@
-﻿using System;
+﻿/**
+ * MetroFramework - ExtendedRendering - Modern UI for WinForms
+ * 
+ * The MIT License (MIT)
+ * Copyright (c) 2016 Angelo Cresta, http://quarztech.com
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of 
+ * this software and associated documentation files (the "Software"), to deal in the 
+ * Software without restriction, including without limitation the rights to use, copy, 
+ * modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, 
+ * and to permit persons to whom the Software is furnished to do so, subject to the 
+ * following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in 
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
+ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
+ * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
+ * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+ using System;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,7 +35,7 @@ namespace MetroFramework.Drawing
 {
     public static class MetroDrawingMethods
     {
-        #region ... ColorManipulation ...
+        #region ... Color Manipulation ...
         public static Color GetDarkColor(Color clr)
         {
             Color c = new Color();
@@ -30,39 +53,6 @@ namespace MetroFramework.Drawing
             return c;
         }
 
-        public static Color GetDarkColor(Color clr, int amount)
-        {
-            Color c = new Color();
-            int r, g, b;
-
-            r = clr.R - amount;
-            g = clr.G - amount;
-            b = clr.B - amount;
-
-            if (r < 0) r = 0;
-            if (g < 0) g = 0;
-            if (b < 0) b = 0;
-
-            c = Color.FromArgb(r, g, b);
-            return c;
-        }
-
-        public static Color GetLightColor(Color clr, int amount)
-        {
-            Color c = new Color();
-            int r, g, b;
-
-            r = clr.R + amount;
-            g = clr.G + amount;
-            b = clr.B + amount;
-
-            if (r > 255) r = 255;
-            if (g > 255) g = 255;
-            if (b > 255) b = 255;
-
-            c = Color.FromArgb(r, g, b);
-            return c; 
-        }
 
         public static Color GetLightColor(Color clr)
         {
@@ -78,8 +68,36 @@ namespace MetroFramework.Drawing
             if (b > 255) b = 255;
 
             c = Color.FromArgb(r, g, b);
-            return c; 
+            return c;
         }
+        public static Color GetDarkColor(Color c, byte d)
+        {
+            byte r = 0;
+            byte g = 0;
+            byte b = 0;
+
+            if ((c.R > d)) r = (byte)(c.R - d);
+            if ((c.G > d)) g = (byte)(c.G - d);
+            if ((c.B > d)) b = (byte)(c.B - d);
+
+            Color c1 = Color.FromArgb(r, g, b);
+            return c1;
+        }
+
+        public static Color GetLightColor(Color c, byte d)
+        {
+            byte r = 255;
+            byte g = 255;
+            byte b = 255;
+
+            if (((int)c.R + (int)d <= 255)) r = (byte)(c.R + d);
+            if (((int)c.G + (int)d <= 255)) g = (byte)(c.G + d);
+            if (((int)c.B + (int)d <= 255)) b = (byte)(c.B + d);
+
+            Color c2 = Color.FromArgb(r, g, b);
+            return c2;
+        }
+
 
         public static Color GetSystemDarkColor(Color clr)
         {
@@ -418,7 +436,7 @@ namespace MetroFramework.Drawing
         }
         #endregion
 
-        #region  ... Utilis ...
+        #region  ... Utils ...
         public static StringFormat GetStringFormat(ContentAlignment contentAlignment)
         {
             if (!Enum.IsDefined(typeof(ContentAlignment), (int)contentAlignment))

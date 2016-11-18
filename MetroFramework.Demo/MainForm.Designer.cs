@@ -135,10 +135,10 @@
             this.metroGroupBox1 = new MetroFramework.Controls.MetroGroupBox();
             this.metroSplitContainer2 = new MetroFramework.Controls.MetroSplitContainer();
             this.metroSplitContainer3 = new MetroFramework.Controls.MetroSplitContainer();
-            this.metroGroupBox2 = new MetroFramework.Controls.MetroGroupBox();
+            this.metroPanel4 = new MetroFramework.Controls.MetroPanel();
             this.metroSplitContainer4 = new MetroFramework.Controls.MetroSplitContainer();
             this.metroGroupBox3 = new MetroFramework.Controls.MetroGroupBox();
-            this.metroGroupBox4 = new MetroFramework.Controls.MetroGroupBox();
+            this.metroPanel5 = new MetroFramework.Controls.MetroPanel();
             this.metroToolTip = new MetroFramework.Components.MetroToolTip();
             this.entry1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.entry2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -150,6 +150,9 @@
             this.entry1ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.entry2ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.entry3ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.metroKnobControl1 = new MetroFramework.Controls.MetroKnobControl();
+            this.lblKnobValue = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel28 = new MetroFramework.Controls.MetroLabel();
             this.metroTabControl1.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager)).BeginInit();
@@ -178,6 +181,7 @@
             this.metroSplitContainer3.Panel1.SuspendLayout();
             this.metroSplitContainer3.Panel2.SuspendLayout();
             this.metroSplitContainer3.SuspendLayout();
+            this.metroPanel4.SuspendLayout();
             this.metroSplitContainer4.Panel1.SuspendLayout();
             this.metroSplitContainer4.Panel2.SuspendLayout();
             this.metroSplitContainer4.SuspendLayout();
@@ -200,7 +204,7 @@
             this.metroTabControl1.HotTrack = true;
             this.metroTabControl1.Location = new System.Drawing.Point(20, 60);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 0;
+            this.metroTabControl1.SelectedIndex = 6;
             this.metroTabControl1.Size = new System.Drawing.Size(652, 308);
             this.metroTabControl1.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroTabControl1.StyleManager = this.metroStyleManager;
@@ -243,7 +247,7 @@
             this.metroTabPage1.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroTabPage1.StyleManager = this.metroStyleManager;
             this.metroTabPage1.TabIndex = 0;
-            this.metroTabPage1.Tag = true;
+            this.metroTabPage1.Tag = false;
             this.metroTabPage1.Text = "Tiles && Buttons";
             this.metroTabPage1.Theme = MetroFramework.MetroThemeStyle.Light;
             this.metroTabPage1.VerticalScrollbar = true;
@@ -1844,6 +1848,8 @@
             this.metroPropertyGrid1.CategoryForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.metroPropertyGrid1.CustomBackground = false;
             this.metroPropertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.metroPropertyGrid1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.metroPropertyGrid1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.metroPropertyGrid1.HelpBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.metroPropertyGrid1.HelpForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.metroPropertyGrid1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -1870,12 +1876,12 @@
             this.metroGroupBox1.Location = new System.Drawing.Point(0, 0);
             this.metroGroupBox1.Name = "metroGroupBox1";
             this.metroGroupBox1.PaintDefault = false;
-            this.metroGroupBox1.Size = new System.Drawing.Size(191, 123);
+            this.metroGroupBox1.Size = new System.Drawing.Size(205, 123);
             this.metroGroupBox1.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroGroupBox1.StyleManager = this.metroStyleManager;
             this.metroGroupBox1.TabIndex = 3;
             this.metroGroupBox1.TabStop = false;
-            this.metroGroupBox1.Text = "metroGroupBox1";
+            this.metroGroupBox1.Text = "Metro GroupBox";
             this.metroGroupBox1.Theme = MetroFramework.MetroThemeStyle.Light;
             this.metroGroupBox1.UseStyleColors = false;
             // 
@@ -1896,7 +1902,7 @@
             // 
             this.metroSplitContainer2.Panel2.Controls.Add(this.metroSplitContainer4);
             this.metroSplitContainer2.Size = new System.Drawing.Size(420, 269);
-            this.metroSplitContainer2.SplitterDistance = 191;
+            this.metroSplitContainer2.SplitterDistance = 205;
             this.metroSplitContainer2.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroSplitContainer2.StyleManager = this.metroStyleManager;
             this.metroSplitContainer2.TabIndex = 0;
@@ -1918,36 +1924,36 @@
             // 
             // metroSplitContainer3.Panel2
             // 
-            this.metroSplitContainer3.Panel2.Controls.Add(this.metroGroupBox2);
-            this.metroSplitContainer3.Size = new System.Drawing.Size(191, 269);
+            this.metroSplitContainer3.Panel2.Controls.Add(this.metroPanel4);
+            this.metroSplitContainer3.Size = new System.Drawing.Size(205, 269);
             this.metroSplitContainer3.SplitterDistance = 123;
             this.metroSplitContainer3.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroSplitContainer3.StyleManager = this.metroStyleManager;
             this.metroSplitContainer3.TabIndex = 0;
             this.metroSplitContainer3.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
-            // metroGroupBox2
+            // metroPanel4
             // 
-            this.metroGroupBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.metroGroupBox2.BorderStyle = MetroFramework.Controls.MetroGroupBox.BorderMode.Header;
-            this.metroGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroGroupBox2.DrawBottomLine = true;
-            this.metroGroupBox2.DrawShadows = false;
-            this.metroGroupBox2.Font = new System.Drawing.Font("Segoe UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.metroGroupBox2.FontSize = MetroFramework.MetroLabelSize.Medium;
-            this.metroGroupBox2.FontWeight = MetroFramework.MetroLabelWeight.Light;
-            this.metroGroupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.metroGroupBox2.Location = new System.Drawing.Point(0, 0);
-            this.metroGroupBox2.Name = "metroGroupBox2";
-            this.metroGroupBox2.PaintDefault = false;
-            this.metroGroupBox2.Size = new System.Drawing.Size(191, 142);
-            this.metroGroupBox2.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroGroupBox2.StyleManager = this.metroStyleManager;
-            this.metroGroupBox2.TabIndex = 4;
-            this.metroGroupBox2.TabStop = false;
-            this.metroGroupBox2.Text = "metroGroupBox2";
-            this.metroGroupBox2.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroGroupBox2.UseStyleColors = false;
+            this.metroPanel4.Controls.Add(this.lblKnobValue);
+            this.metroPanel4.Controls.Add(this.metroLabel28);
+            this.metroPanel4.Controls.Add(this.metroKnobControl1);
+            this.metroPanel4.CustomBackground = false;
+            this.metroPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.metroPanel4.HorizontalScrollbar = false;
+            this.metroPanel4.HorizontalScrollbarBarColor = true;
+            this.metroPanel4.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroPanel4.HorizontalScrollbarSize = 10;
+            this.metroPanel4.Location = new System.Drawing.Point(0, 0);
+            this.metroPanel4.Name = "metroPanel4";
+            this.metroPanel4.Size = new System.Drawing.Size(205, 142);
+            this.metroPanel4.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroPanel4.StyleManager = this.metroStyleManager;
+            this.metroPanel4.TabIndex = 0;
+            this.metroPanel4.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.metroPanel4.VerticalScrollbar = false;
+            this.metroPanel4.VerticalScrollbarBarColor = true;
+            this.metroPanel4.VerticalScrollbarHighlightOnWheel = false;
+            this.metroPanel4.VerticalScrollbarSize = 10;
             // 
             // metroSplitContainer4
             // 
@@ -1965,8 +1971,8 @@
             // 
             // metroSplitContainer4.Panel2
             // 
-            this.metroSplitContainer4.Panel2.Controls.Add(this.metroGroupBox4);
-            this.metroSplitContainer4.Size = new System.Drawing.Size(225, 269);
+            this.metroSplitContainer4.Panel2.Controls.Add(this.metroPanel5);
+            this.metroSplitContainer4.Size = new System.Drawing.Size(211, 269);
             this.metroSplitContainer4.SplitterDistance = 123;
             this.metroSplitContainer4.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroSplitContainer4.StyleManager = this.metroStyleManager;
@@ -1987,37 +1993,34 @@
             this.metroGroupBox3.Location = new System.Drawing.Point(0, 0);
             this.metroGroupBox3.Name = "metroGroupBox3";
             this.metroGroupBox3.PaintDefault = false;
-            this.metroGroupBox3.Size = new System.Drawing.Size(225, 123);
+            this.metroGroupBox3.Size = new System.Drawing.Size(211, 123);
             this.metroGroupBox3.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroGroupBox3.StyleManager = this.metroStyleManager;
             this.metroGroupBox3.TabIndex = 5;
             this.metroGroupBox3.TabStop = false;
-            this.metroGroupBox3.Text = "metroGroupBox3";
+            this.metroGroupBox3.Text = "Metro GroupBox";
             this.metroGroupBox3.Theme = MetroFramework.MetroThemeStyle.Light;
             this.metroGroupBox3.UseStyleColors = false;
             // 
-            // metroGroupBox4
+            // metroPanel5
             // 
-            this.metroGroupBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.metroGroupBox4.BorderStyle = MetroFramework.Controls.MetroGroupBox.BorderMode.Full;
-            this.metroGroupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroGroupBox4.DrawBottomLine = false;
-            this.metroGroupBox4.DrawShadows = false;
-            this.metroGroupBox4.Font = new System.Drawing.Font("Segoe UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.metroGroupBox4.FontSize = MetroFramework.MetroLabelSize.Medium;
-            this.metroGroupBox4.FontWeight = MetroFramework.MetroLabelWeight.Light;
-            this.metroGroupBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.metroGroupBox4.Location = new System.Drawing.Point(0, 0);
-            this.metroGroupBox4.Name = "metroGroupBox4";
-            this.metroGroupBox4.PaintDefault = false;
-            this.metroGroupBox4.Size = new System.Drawing.Size(225, 142);
-            this.metroGroupBox4.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroGroupBox4.StyleManager = this.metroStyleManager;
-            this.metroGroupBox4.TabIndex = 6;
-            this.metroGroupBox4.TabStop = false;
-            this.metroGroupBox4.Text = "metroGroupBox4";
-            this.metroGroupBox4.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroGroupBox4.UseStyleColors = false;
+            this.metroPanel5.CustomBackground = false;
+            this.metroPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.metroPanel5.HorizontalScrollbar = false;
+            this.metroPanel5.HorizontalScrollbarBarColor = true;
+            this.metroPanel5.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroPanel5.HorizontalScrollbarSize = 10;
+            this.metroPanel5.Location = new System.Drawing.Point(0, 0);
+            this.metroPanel5.Name = "metroPanel5";
+            this.metroPanel5.Size = new System.Drawing.Size(211, 142);
+            this.metroPanel5.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroPanel5.StyleManager = this.metroStyleManager;
+            this.metroPanel5.TabIndex = 0;
+            this.metroPanel5.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.metroPanel5.VerticalScrollbar = false;
+            this.metroPanel5.VerticalScrollbarBarColor = true;
+            this.metroPanel5.VerticalScrollbarHighlightOnWheel = false;
+            this.metroPanel5.VerticalScrollbarSize = 10;
             // 
             // metroToolTip
             // 
@@ -2086,6 +2089,63 @@
             this.entry3ToolStripMenuItem1.Size = new System.Drawing.Size(110, 22);
             this.entry3ToolStripMenuItem1.Text = "Entry 3";
             // 
+            // metroKnobControl1
+            // 
+            this.metroKnobControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.metroKnobControl1.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.metroKnobControl1.LargeChange = 20;
+            this.metroKnobControl1.Location = new System.Drawing.Point(42, 3);
+            this.metroKnobControl1.Maximum = 100;
+            this.metroKnobControl1.Minimum = 0;
+            this.metroKnobControl1.Name = "metroKnobControl1";
+            this.metroKnobControl1.ShowLargeScale = true;
+            this.metroKnobControl1.ShowSmallScale = false;
+            this.metroKnobControl1.Size = new System.Drawing.Size(114, 108);
+            this.metroKnobControl1.SizeLargeScaleMarker = 6;
+            this.metroKnobControl1.SizeSmallScaleMarker = 3;
+            this.metroKnobControl1.SmallChange = 5;
+            this.metroKnobControl1.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroKnobControl1.StyleManager = null;
+            this.metroKnobControl1.TabIndex = 2;
+            this.metroKnobControl1.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.metroKnobControl1.UseStyleColors = false;
+            this.metroKnobControl1.Value = 0;
+            this.metroKnobControl1.ValueChanged += new MetroFramework.Controls.ValueChangedEventHandler(this.metroKnobControl1_ValueChanged);
+            // 
+            // lblKnobValue
+            // 
+            this.lblKnobValue.AutoSize = true;
+            this.lblKnobValue.CustomBackground = false;
+            this.lblKnobValue.FontSize = MetroFramework.MetroLabelSize.Medium;
+            this.lblKnobValue.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.lblKnobValue.LabelMode = MetroFramework.Controls.MetroLabelMode.Default;
+            this.lblKnobValue.Location = new System.Drawing.Point(109, 114);
+            this.lblKnobValue.Name = "lblKnobValue";
+            this.lblKnobValue.Size = new System.Drawing.Size(17, 19);
+            this.lblKnobValue.Style = MetroFramework.MetroColorStyle.Blue;
+            this.lblKnobValue.StyleManager = this.metroStyleManager;
+            this.lblKnobValue.TabIndex = 21;
+            this.lblKnobValue.Text = "0";
+            this.lblKnobValue.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.lblKnobValue.UseStyleColors = false;
+            // 
+            // metroLabel28
+            // 
+            this.metroLabel28.AutoSize = true;
+            this.metroLabel28.CustomBackground = false;
+            this.metroLabel28.FontSize = MetroFramework.MetroLabelSize.Medium;
+            this.metroLabel28.FontWeight = MetroFramework.MetroLabelWeight.Light;
+            this.metroLabel28.LabelMode = MetroFramework.Controls.MetroLabelMode.Default;
+            this.metroLabel28.Location = new System.Drawing.Point(61, 114);
+            this.metroLabel28.Name = "metroLabel28";
+            this.metroLabel28.Size = new System.Drawing.Size(42, 19);
+            this.metroLabel28.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroLabel28.StyleManager = this.metroStyleManager;
+            this.metroLabel28.TabIndex = 20;
+            this.metroLabel28.Text = "Value:";
+            this.metroLabel28.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.metroLabel28.UseStyleColors = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2133,6 +2193,8 @@
             this.metroSplitContainer3.Panel1.ResumeLayout(false);
             this.metroSplitContainer3.Panel2.ResumeLayout(false);
             this.metroSplitContainer3.ResumeLayout(false);
+            this.metroPanel4.ResumeLayout(false);
+            this.metroPanel4.PerformLayout();
             this.metroSplitContainer4.Panel1.ResumeLayout(false);
             this.metroSplitContainer4.Panel2.ResumeLayout(false);
             this.metroSplitContainer4.ResumeLayout(false);
@@ -2253,12 +2315,15 @@
         private Controls.MetroToggle metroToggle4;
         private Controls.MetroGroupBox metroGroupBox1;
         private Controls.MetroPropertyGrid metroPropertyGrid1;
-        private Controls.MetroGroupBox metroGroupBox4;
         private Controls.MetroGroupBox metroGroupBox3;
-        private Controls.MetroGroupBox metroGroupBox2;
         private Controls.MetroSplitContainer metroSplitContainer1;
         private Controls.MetroSplitContainer metroSplitContainer2;
         private Controls.MetroSplitContainer metroSplitContainer3;
         private Controls.MetroSplitContainer metroSplitContainer4;
+        private Controls.MetroPanel metroPanel4;
+        private Controls.MetroPanel metroPanel5;
+        private Controls.MetroLabel lblKnobValue;
+        private Controls.MetroLabel metroLabel28;
+        private Controls.MetroKnobControl metroKnobControl1;
     }
 }

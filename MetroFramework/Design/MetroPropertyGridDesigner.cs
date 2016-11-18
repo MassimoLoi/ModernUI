@@ -39,8 +39,6 @@ namespace MetroFramework.Design
 
         protected override void PreFilterProperties(IDictionary properties)
         {
-            properties.Remove("Font");
-            properties.Remove("ForeColor");
 
             base.PreFilterProperties(properties);
         }

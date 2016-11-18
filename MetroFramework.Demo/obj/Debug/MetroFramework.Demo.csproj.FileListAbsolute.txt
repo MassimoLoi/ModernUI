@@ -11,3 +11,5 @@ D:\Projects\_Comp\ModernUI\MetroFramework.Demo\obj\Debug\MetroFramework.Demo.Tas
 D:\Projects\_Comp\ModernUI\MetroFramework.Demo\obj\Debug\MetroFramework.Demo.csproj.GenerateResource.Cache
 D:\Projects\_Comp\ModernUI\MetroFramework.Demo\obj\Debug\MetroFramework.Demo.exe
 D:\Projects\_Comp\ModernUI\MetroFramework.Demo\obj\Debug\MetroFramework.Demo.pdb
+D:\Projects\_Comp\ModernUI\MetroFramework.Demo\obj\Debug\MetroFramework.Demo.ChildForm.resources
+D:\Projects\_Comp\ModernUI\MetroFramework.Demo\obj\Debug\MetroFramework.Demo.DemoForm.resources

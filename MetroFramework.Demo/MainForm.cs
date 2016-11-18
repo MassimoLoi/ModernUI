@@ -94,5 +94,9 @@ namespace MetroFramework.Demo
             MetroMessageBox.Show(this, "This is a sample MetroMessagebox `Retry` and `Cancel` button.  With warning style.", "MetroMessagebox", MessageBoxButtons.RetryCancel, MessageBoxIcon.Warning);
         }
 
+        private void metroKnobControl1_ValueChanged(object Sender)
+        {
+            lblKnobValue.Text = metroKnobControl1.Value.ToString();
+        }
     }
 }
