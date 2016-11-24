@@ -680,10 +680,10 @@ namespace MetroFramework.Controls
         private void InitColors()
         {
             this.BorderStyle = BorderStyle.None;
-            this.KnobColor = MetroPaint.BackColor.KnobControl(Theme);
-            this.KnobBorderColor = MetroPaint.BorderColor.KnobControl(Theme);
-            this.ForeColor = !useStyleColors ? MetroPaint.ForeColor.KnobControl(Theme) : MetroPaint.GetStyleColor(Style);
-            this.KnobBackColor = MetroPaint.BackColor.KnobControl(Theme);
+            this.KnobColor = MetroPaint.BackColor.KnobControl.Normal(Theme);
+            this.KnobBorderColor = MetroPaint.BorderColor.KnobControl.Normal(Theme);
+            this.ForeColor = !useStyleColors ? MetroPaint.ForeColor.KnobControl.Normal(Theme) : MetroPaint.GetStyleColor(Style);
+            this.KnobBackColor = MetroPaint.BackColor.KnobControl.Normal(Theme);
 
             setDimensions(); this.Invalidate();
         }

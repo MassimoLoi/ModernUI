@@ -97,11 +97,11 @@
     <Compile Include="Controls\MetroDateTime.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\MetroGrid.cs">
+    <Compile Include="Controls\MetroDomainUpDown.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\MetroGrid.designer.cs">
-      <DependentUpon>MetroGrid.cs</DependentUpon>
+    <Compile Include="Controls\MetroGrid.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\MetroGroupBox.cs">
       <SubType>Component</SubType>
@@ -113,6 +113,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\MetroLink.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\MetroNumericUpDown.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\MetroPanel.cs">
@@ -131,6 +134,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\MetroScrollBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\MetroSplitButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\MetroSplitContainer.cs">
@@ -155,7 +161,12 @@
     <Compile Include="Controls\MetroUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Design\MetroDomainUpDownDesigner.cs" />
+    <Compile Include="Design\MetroGridDesigner.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Design\MetroGroupBoxDesigner.cs" />
+    <Compile Include="Design\MetroNumericUpDownDesigner.cs" />
     <Compile Include="Design\MetroPropertyGridDesigner.cs" />
     <Compile Include="Design\MetroTabPageDesigner.cs" />
     <Compile Include="Design\MetroProgressSpinnerDesigner.cs" />

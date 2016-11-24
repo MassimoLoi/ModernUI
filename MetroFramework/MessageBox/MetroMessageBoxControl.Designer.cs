@@ -109,7 +109,6 @@
             this.metroButton1.Size = new System.Drawing.Size(90, 26);
             this.metroButton1.TabIndex = 3;
             this.metroButton1.Text = "button 1";
-            this.metroButton1.UseSelectable = true;
             // 
             // metroButton3
             // 
@@ -120,7 +119,6 @@
             this.metroButton3.Size = new System.Drawing.Size(90, 26);
             this.metroButton3.TabIndex = 5;
             this.metroButton3.Text = "button 3";
-            this.metroButton3.UseSelectable = true;
             // 
             // metroButton2
             // 
@@ -131,7 +129,6 @@
             this.metroButton2.Size = new System.Drawing.Size(90, 26);
             this.metroButton2.TabIndex = 4;
             this.metroButton2.Text = "button 2";
-            this.metroButton2.UseSelectable = true;
             // 
             // pnlBottom
             // 

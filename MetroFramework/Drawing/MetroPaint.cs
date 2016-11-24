@@ -3,6 +3,7 @@
  * 
  * The MIT License (MIT)
  * Copyright (c) 2011 Sven Walter, http://github.com/viperneo
+ * Copyright (c) 2016 Angelo Cresta, http://quarztech.com
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy of 
  * this software and associated documentation files (the "Software"), to deal in the 
@@ -20,7 +21,7 @@
  * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- */
+*/
 
 namespace MetroFramework.Drawing
 {
@@ -54,12 +55,33 @@ namespace MetroFramework.Drawing
                 return Color.FromArgb(204, 204, 204);
             }
 
-            public static Color KnobControl(MetroThemeStyle theme)
+            public static class KnobControl
             {
-                if (theme == MetroThemeStyle.Dark)
-                    return Color.FromArgb(68, 68, 68);
+                public static Color Normal(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(68, 68, 68);
 
-                return Color.FromArgb(204, 204, 204);
+                    return Color.FromArgb(204, 204, 204);
+                }
+            }
+
+            public static class NumericUpDown
+            {
+                public static Color Normal(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(68, 68, 68);
+
+                    return Color.FromArgb(204, 204, 204);
+                }
+                public static Color Hot(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.Black;
+
+                    return Color.White;
+                }
             }
 
             public static class GroupBox
@@ -309,12 +331,33 @@ namespace MetroFramework.Drawing
                 return Color.FromArgb(255, 255, 255);
             }
 
-            public static Color KnobControl(MetroThemeStyle theme)
-            {
-                if (theme == MetroThemeStyle.Dark)
-                    return Color.FromArgb(17, 17, 17);
 
-                return Color.FromArgb(255, 255, 255);
+            public static class KnobControl
+            {
+                public static Color Normal(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(17, 17, 17);
+
+                    return Color.FromArgb(255, 255, 255);
+                }
+            }
+            public static class NumericUpDown
+            {
+                public static Color Normal(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(34, 34, 34);
+
+                    return Color.FromArgb(238, 238, 238);
+                }
+                public static Color Alternate(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(17, 17, 17);
+
+                    return Color.FromArgb(255, 255, 255);
+                }
             }
 
             public static class GroupBox
@@ -592,13 +635,34 @@ namespace MetroFramework.Drawing
 
         public sealed class ForeColor
         {
-
-            public static Color KnobControl(MetroThemeStyle theme)
+            public static class KnobControl
             {
-                if (theme == MetroThemeStyle.Dark)
-                    return Color.FromArgb(170, 170, 170);
+                public static Color Normal(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(170, 170, 170);
 
-                return Color.FromArgb(0, 0, 0);
+                    return Color.FromArgb(0, 0, 0);
+                }
+            }
+
+            public static class NumericUpDown
+            {
+                public static Color Normal(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(204, 204, 204);
+
+                    return Color.FromArgb(0, 0, 0);
+                }
+
+                public static Color Disabled(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(109, 109, 109);
+
+                    return Color.FromArgb(155, 155, 155);
+                }
             }
 
             public static class GroupBox
@@ -642,25 +706,41 @@ namespace MetroFramework.Drawing
                 public static Color Normal(MetroThemeStyle theme)
                 {
                     if (theme == MetroThemeStyle.Dark)
-                        return Color.FromArgb(255, 255, 255);
+                        return Color.FromArgb(204, 204, 204);
 
                     return Color.FromArgb(0, 0, 0);
                 }
 
-                public static Color Hover(MetroThemeStyle theme)
+                public static Color Hover(MetroThemeStyle theme, MetroColorStyle style)
                 {
                     if (theme == MetroThemeStyle.Dark)
-                        return Color.FromArgb(255, 255, 255);
+                    {
+                        if (style == MetroColorStyle.White)
+                            return Color.FromArgb(200, 200, 200);
+                        else
+                            return Color.FromArgb(255, 255, 255);
+                    }
 
-                    return Color.FromArgb(255, 255, 255);
+                    if (style == MetroColorStyle.White)
+                        return Color.FromArgb(200, 200, 200);
+                    else
+                        return Color.FromArgb(255, 255, 255); 
                 }
 
-                public static Color Press(MetroThemeStyle theme)
+                public static Color Press(MetroThemeStyle theme, MetroColorStyle style)
                 {
                     if (theme == MetroThemeStyle.Dark)
-                        return Color.FromArgb(255, 255, 255);
+                    {
+                        if (style == MetroColorStyle.White)
+                            return Color.FromArgb(200, 200, 200);
+                        else
+                            return Color.FromArgb(255, 255, 255);
+                    }
 
-                    return Color.FromArgb(255, 255, 255);
+                    if (style == MetroColorStyle.White)
+                        return Color.FromArgb(200, 200, 200);
+                    else
+                        return Color.FromArgb(255, 255, 255); 
                 }
 
                 public static Color Disabled(MetroThemeStyle theme)
@@ -716,28 +796,52 @@ namespace MetroFramework.Drawing
 
             public sealed class Tile
             {
-                public static Color Normal(MetroThemeStyle theme)
+                public static Color Normal(MetroThemeStyle theme, MetroColorStyle style)
                 {
                     if (theme == MetroThemeStyle.Dark)
-                        return Color.FromArgb(255, 255, 255);
+                    {
+                        if (style == MetroColorStyle.White)                       
+                            return Color.FromArgb(200, 200, 200);                  
+                        else                       
+                            return Color.FromArgb(255, 255, 255);                    
+                    }
 
-                    return Color.FromArgb(255, 255, 255);
+                    if (style == MetroColorStyle.White)
+                        return Color.FromArgb(200, 200, 200);
+                    else
+                        return Color.FromArgb(255, 255, 255); 
                 }
 
-                public static Color Hover(MetroThemeStyle theme)
+                public static Color Hover(MetroThemeStyle theme, MetroColorStyle style)
                 {
                     if (theme == MetroThemeStyle.Dark)
-                        return Color.FromArgb(255, 255, 255);
+                    {
+                        if (style == MetroColorStyle.White)
+                            return Color.FromArgb(200, 200, 200);
+                        else
+                            return Color.FromArgb(255, 255, 255);
+                    }
 
-                    return Color.FromArgb(255, 255, 255);
+                    if (style == MetroColorStyle.White)
+                        return Color.FromArgb(200, 200, 200);
+                    else
+                        return Color.FromArgb(255, 255, 255); 
                 }
 
-                public static Color Press(MetroThemeStyle theme)
+                public static Color Press(MetroThemeStyle theme, MetroColorStyle style)
                 {
                     if (theme == MetroThemeStyle.Dark)
-                        return Color.FromArgb(255, 255, 255);
+                    {
+                        if (style == MetroColorStyle.White)
+                            return Color.FromArgb(200, 200, 200);
+                        else
+                            return Color.FromArgb(255, 255, 255);
+                    }
 
-                    return Color.FromArgb(255, 255, 255);
+                    if (style == MetroColorStyle.White)
+                        return Color.FromArgb(200, 200, 200);
+                    else
+                        return Color.FromArgb(255, 255, 255); 
                 }
 
                 public static Color Disabled(MetroThemeStyle theme)
@@ -1012,12 +1116,12 @@ namespace MetroFramework.Drawing
             {
                 public static Color MenuStripGradientBegin(MetroThemeStyle theme, MetroColorStyle style)
                 {
-                    return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
+                    return MetroPaint.BackColor.Button.Normal(theme); //return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
                 }
 
                 public static Color MenuStripGradientEnd(MetroThemeStyle theme, MetroColorStyle style)
                 {
-                    return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
+                    return MetroPaint.BackColor.Button.Normal(theme); //return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
                 }
 
                 public static Color MenuItemSelectedGradientBegin(MetroThemeStyle theme, MetroColorStyle style)
@@ -1047,17 +1151,14 @@ namespace MetroFramework.Drawing
 
                 public static Color MenuBorder(MetroThemeStyle theme, MetroColorStyle style)
                 {
-                    return MetroPaint.BackColor.Form(theme);
+                    return MetroPaint.GetStyleColor(style); //return MetroPaint.BorderColor.Button.Normal(theme);
                 }
 
                 public static Color MenuItemBorder(MetroThemeStyle theme, MetroColorStyle style)
                 {
                     return MetroPaint.GetStyleColor(style);
                 }
-                public static Color MenuItemText(MetroThemeStyle theme, MetroColorStyle style)
-                {
-                    return MetroPaint.ForeColor.MenuItem.Normal(theme);
-                }
+
             }
 
             public sealed class ToolStrip
@@ -1069,17 +1170,17 @@ namespace MetroFramework.Drawing
 
                 public static Color ToolStripGradientBegin(MetroThemeStyle theme, MetroColorStyle style)
                 {
-                    return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
+                    return MetroPaint.BackColor.Button.Normal(theme); //return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
                 }
 
                 public static Color ToolStripGradientMiddle(MetroThemeStyle theme, MetroColorStyle style)
                 {
-                    return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
+                    return MetroPaint.BackColor.Button.Normal(theme); //return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
                 }
 
                 public static Color ToolStripGradientEnd(MetroThemeStyle theme, MetroColorStyle style)
                 {
-                    return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
+                    return MetroPaint.BackColor.Button.Normal(theme); //return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
                 }
 
                 public static Color ToolStripPanelGradientBegin(MetroThemeStyle theme, MetroColorStyle style)
@@ -1095,10 +1196,6 @@ namespace MetroFramework.Drawing
                 public static Color ToolStripBorder(MetroThemeStyle theme, MetroColorStyle style)
                 {
                     return ControlPaint.Light(MetroPaint.BackColor.Form(theme));
-                }
-                public static Color ToolStripText(MetroThemeStyle theme, MetroColorStyle style)
-                {
-                    return MetroPaint.ForeColor.MenuItem.Normal(theme);
                 }
             }
 
@@ -1124,17 +1221,12 @@ namespace MetroFramework.Drawing
             {
                 public static Color StatusStripGradientBegin(MetroThemeStyle theme, MetroColorStyle style)
                 {
-                    return MetroPaint.GetStyleColor(style);
+                    return MetroPaint.BackColor.Button.Normal(theme);
                 }
 
                 public static Color StatusStripGradientEnd(MetroThemeStyle theme, MetroColorStyle style)
                 {
-                    return MetroPaint.GetStyleColor(style);
-                }
-
-                public static Color StatusStripText(MetroThemeStyle theme, MetroColorStyle style)
-                {
-                    return MetroPaint.ForeColor.MenuItem.Normal(theme);
+                    return MetroPaint.BackColor.Button.Normal(theme);
                 }
             }
 
@@ -1412,3 +1504,5 @@ namespace MetroFramework.Drawing
         #endregion
     }
 }
+
+

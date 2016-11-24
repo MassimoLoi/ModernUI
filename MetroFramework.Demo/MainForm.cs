@@ -23,8 +23,8 @@ namespace MetroFramework.Demo
 
             mlSelectedColor.Text = metroStyleManager.Style.ToString();
             mlSelectedTheme.Text = metroStyleManager.Theme.ToString();
-            mlHotTrack.Text = this.metroTabControl1.HotTrack.ToString();
-            //metroToggle4.
+
+
         }
 
         private void metroTileSwitch_Click(object sender, EventArgs e)
@@ -46,7 +46,7 @@ namespace MetroFramework.Demo
             mlSelectedTheme.Text = metroStyleManager.Theme.ToString();
         }
 
-       private int steps = 0;
+        private int steps = 0;
         private void metroButton4_Click(object sender, EventArgs e)
         {
             Color target = Color.Purple;
@@ -81,7 +81,7 @@ namespace MetroFramework.Demo
 
         private void metroButton1_Click(object sender, EventArgs e)
         {
-            MetroTaskWindow.ShowTaskWindow(this, "SubControl in TaskWindow", new TaskWindowControl(), 10); 
+            MetroTaskWindow.ShowTaskWindow(this, "SubControl in TaskWindow", new TaskWindowControl(), 10);
         }
 
         private void metroButton2_Click(object sender, EventArgs e)
@@ -98,5 +98,12 @@ namespace MetroFramework.Demo
         {
             lblKnobValue.Text = metroKnobControl1.Value.ToString();
         }
+
+        private void metroToggle4_CheckedChanged(object sender, EventArgs e)
+        {
+            metroTabControl1.HotTrack = metroTabControl1.HotTrack == true ? metroTabControl1.HotTrack = false : metroTabControl1.HotTrack = true;
+
+        }
     }
 }
+

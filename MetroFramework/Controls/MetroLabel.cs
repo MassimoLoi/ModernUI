@@ -187,7 +187,7 @@ namespace MetroFramework.Controls
                 {
                     if (Parent is MetroTile)
                     {
-                        foreColor = MetroPaint.ForeColor.Tile.Normal(Theme);
+                        foreColor = MetroPaint.ForeColor.Tile.Normal(Theme, Style);
                     }
                     else
                     {
@@ -352,7 +352,7 @@ namespace MetroFramework.Controls
                 {
                     if (Parent is MetroTile)
                     {
-                        baseTextBox.ForeColor = MetroPaint.ForeColor.Tile.Normal(Theme);
+                        baseTextBox.ForeColor = MetroPaint.ForeColor.Tile.Normal(Theme, Style);
                     }
                     else
                     {

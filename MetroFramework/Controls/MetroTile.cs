@@ -143,11 +143,11 @@ namespace MetroFramework.Controls
 
             if (isHovered && !isPressed && Enabled)
             {
-                foreColor = MetroPaint.ForeColor.Tile.Hover(Theme);
+                foreColor = MetroPaint.ForeColor.Tile.Hover(Theme, Style);
             }
             else if (isHovered && isPressed && Enabled)
             {
-                foreColor = MetroPaint.ForeColor.Tile.Press(Theme);
+                foreColor = MetroPaint.ForeColor.Tile.Press(Theme, Style);
             }
             else if (!Enabled)
             {
@@ -155,7 +155,7 @@ namespace MetroFramework.Controls
             }
             else
             {
-                foreColor = MetroPaint.ForeColor.Tile.Normal(Theme);
+                foreColor = MetroPaint.ForeColor.Tile.Normal(Theme, Style);
             }
 
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;

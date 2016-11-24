@@ -241,7 +241,7 @@ namespace MetroFramework.Controls
                 if (Parent is MetroTile)
                 {
                     backColor = MetroPaint.GetStyleColor(Style);
-                    foreColor = MetroPaint.ForeColor.Tile.Normal(Theme);
+                    foreColor = MetroPaint.ForeColor.Tile.Normal(Theme,Style);
                 }
                 else
                 {
