@@ -25,6 +25,9 @@ Extended Controls supported
 * SplitContainer
 * GroupBox
 * KnobControl
+* NumericUpDown
+* DomainUpDown
+* SplitButton
 
 Original Controls supported
 ---------------------------
@@ -54,23 +57,23 @@ Screenshots
 
 *Light*
 
-![MetroFramework](http://i.imgur.com/LcsRQt6.png)
-![MetroFramework](http://i.imgur.com/Jl0AeOK.png)
-![MetroFramework](http://i.imgur.com/zek9B0a.png)
-![MetroFramework](http://i.imgur.com/eZE0vdq.png)
-![MetroFramework](http://i.imgur.com/68FbgXQ.png)
-![MetroFramework](http://i.imgur.com/ydrfoXH.png)
-![MetroFramework](http://i.imgur.com/dQQrIXP.png)
+![MetroFramework](http://i.imgur.com/8V4fbzG.png)
+![MetroFramework](http://i.imgur.com/ky0tI34.png)
+![MetroFramework](http://i.imgur.com/ntTPEbx.png)
+![MetroFramework](http://i.imgur.com/TllPzWk.png)
+![MetroFramework](http://i.imgur.com/XDAnquP.png)
+![MetroFramework](http://i.imgur.com/sYYjWJr.png)
+![MetroFramework](http://i.imgur.com/ETzM9la.png)
 
 *Dark*
 
-![MetroFramework](http://i.imgur.com/xCPKax2.png)
-![MetroFramework](http://i.imgur.com/kzouwKf.png)
-![MetroFramework](http://i.imgur.com/oUIfIOg.png)
-![MetroFramework](http://i.imgur.com/AbXaDFG.png)
-![MetroFramework](http://i.imgur.com/u4eJ7AN.png)
-![MetroFramework](http://i.imgur.com/FYGULlb.png)
-![MetroFramework](http://i.imgur.com/AP7NvaQ.png)
+![MetroFramework](http://i.imgur.com/8VNGM8d.png)
+![MetroFramework](http://i.imgur.com/Qe813mQ.png)
+![MetroFramework](http://i.imgur.com/jZMDjeo.png)
+![MetroFramework](http://i.imgur.com/RuJnarp.png)
+![MetroFramework](http://i.imgur.com/uHfzZlr.png)
+![MetroFramework](http://i.imgur.com/PBTqeWX.png)
+![MetroFramework](http://i.imgur.com/ERTF89C.png)
 
 License
 -------
@@ -78,10 +81,6 @@ License
 MIT License
 
 Copyright (c) 2011 Sven Walter, http://github.com/viperneo
-
-Copyright (c) 2013 Dennis Magno, http://github.com/dennismagno
- 
-Copyright (c) 2015 iMotoGames, http://github.com/imotogames
 
 Copyright (c) 2016 Angelo Cresta, http://github.com/AngeloCresta
 
