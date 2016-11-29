@@ -85,6 +85,11 @@ namespace MetroFramework.Demo
             mlKnobValue.Text = metroKnobControl1.Value.ToString();
         }
 
+        private void DemoForm_HelpButtonClicked(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MessageBox.Show("help clicked");
+        }
+
 
 
 

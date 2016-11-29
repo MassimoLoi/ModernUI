@@ -764,6 +764,14 @@ namespace MetroFramework.Drawing
         #region ... Fore Colors ...
         public sealed class ForeColor
         {
+            public static Color FormGrip(MetroThemeStyle theme)
+            {
+                if (theme == MetroThemeStyle.Dark)
+                    return Color.FromArgb(109, 109, 109);
+
+                return Color.FromArgb(136, 136, 136);
+            }
+
             public static class ListView
             {
                 public static Color Normal(MetroThemeStyle theme)

@@ -30,6 +30,7 @@ Extended Controls supported
 * SplitButton
 * ButtonStyled
 * ListView
+* HelpButton on MetroForm
 
 Original Controls supported
 ---------------------------

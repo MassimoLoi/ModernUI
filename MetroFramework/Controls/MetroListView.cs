@@ -343,9 +343,9 @@ namespace MetroFramework.Controls
             }
         }
 
-        Boolean _enableVistaCheckBoxes = true;
+        Boolean _enableVistaCheckBoxes = false;
         [Browsable(true), Category("Metro Appearance")]
-        [DefaultValue("True")]
+        [DefaultValue("False")]
         public Boolean EnableVistaCheckBoxes
         {
             get { return _enableVistaCheckBoxes; }
@@ -484,6 +484,8 @@ namespace MetroFramework.Controls
             this.ilCheckBoxes.Images.SetKeyName(1, "XpChecked.gif");
             this.ilCheckBoxes.Images.SetKeyName(2, "VistaNotChecked.png");
             this.ilCheckBoxes.Images.SetKeyName(3, "VistaChecked.png");
+            this.ilCheckBoxes.Images.SetKeyName(4, "Win10NotChecked.ico");
+            this.ilCheckBoxes.Images.SetKeyName(5, "Win10Checked.ico");
             // 
             // ilHeight
             // 
@@ -491,6 +493,7 @@ namespace MetroFramework.Controls
             this.ilHeight.ImageSize = new System.Drawing.Size(1, 16);
             this.ilHeight.TransparentColor = System.Drawing.Color.Transparent;
             this.ResumeLayout(false);
+
         }
 
         private void InitColors()
@@ -529,8 +532,8 @@ namespace MetroFramework.Controls
                 { rect.Height = (int)_minimumItemHeight; }
 
 
-                rect.Height -= 1;
-                rect.Width -= 1;
+                //rect.Height -= 1;
+                //rect.Width -= 1;
 
 
                 //force Left align on items
@@ -584,8 +587,8 @@ namespace MetroFramework.Controls
                 if (rect.Height < _minimumItemHeight)
                 { rect.Height = (int)_minimumItemHeight; }
 
-                rect.Height -= 1;
-                rect.Width -= 1;
+                //rect.Height -= 1;
+                //rect.Width -= 1;
 
                 //for correct string drawing Space
                 int MeasureStringWidth = e.Header.Width;
@@ -620,7 +623,7 @@ namespace MetroFramework.Controls
                                 if (_enableVistaCheckBoxes == true)
                                     Check = ilCheckBoxes.Images[3];
                                 else
-                                    Check = ilCheckBoxes.Images[1];
+                                    Check = ilCheckBoxes.Images[5];
                             }
                             else
                             {
@@ -628,43 +631,43 @@ namespace MetroFramework.Controls
                                 if (_enableVistaCheckBoxes == true)
                                     Check = ilCheckBoxes.Images[2];
                                 else
-                                    Check = ilCheckBoxes.Images[0];
+                                    Check = ilCheckBoxes.Images[4];
                             }
 
-                            //vista pixel fix
-                            if (IsOsVistaOrGreater() == true)
-                                rect.Offset(-2, 0);
+                            g.DrawImage(Check, rect.X + 2, rect.Y + 2, 16, 16);
+                            //g.DrawRectangle(new Pen(Color.Red), rect.X + 2, rect.Y + 2, 16, 16);
 
-                            //e.Graphics.DrawString(CheckState, this.Font, new SolidBrush(textColor), rect);
-                            g.DrawImage(Check, rect.X + 4, rect.Y - 1, 16, 16);
-                            rect.Offset(19, 0);
+                            //move the rect to the right
+                            rect.Offset(16, 0);
 
                             //fix for string drawing
                             MeasureStringWidth -= 19;
 
-                            //vista pixel fix
-                            if (IsOsVistaOrGreater() == true)
-                                rect.Offset(-1, 0);
                         }
 
                         //Picture Present?
                         if (e.ColumnIndex == 0)
                         {
-                            if (this.SmallImageList != null)
+                            if (this.SmallImageList != null && SmallImageList.Images.Count >0)
                             {
                                 Size imgSize = this.SmallImageList.ImageSize;
+                                //g.DrawRectangle(new Pen(Color.Green), rect.X + 3, rect.Y + 2, imgSize.Width, imgSize.Height);
                                 try
-                                { this.SmallImageList.Draw(g, rect.X + 4, rect.Y, imgSize.Width, imgSize.Height, e.Item.ImageIndex); }
+                                { 
+                                    this.SmallImageList.Draw(g, rect.X + 4, rect.Y + 3, imgSize.Width, imgSize.Height, e.Item.ImageIndex); 
+                                }
                                 catch
                                 { }
-                                rect.Offset(imgSize.Width, 0);
+
+                                //move the rect to the right
+                                 rect.Offset(15, 0);
 
                                 //fix for string drawing
                                 MeasureStringWidth -= imgSize.Width;
                             }
                         }
 
-                        rect.Offset(4, 2);
+                        rect.Offset(5, 2);
 
                         //drawText
                         Color textColor = MetroPaint.ForeColor.ListView.Selected(Theme, Style); // GetForeTextColor(PaletteState.CheckedPressed);

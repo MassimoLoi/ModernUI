@@ -10,11 +10,47 @@ using MetroFramework.Components;
 using MetroFramework.Drawing;
 using MetroFramework.Interfaces;
 using MetroFramework.Native;
+using System.Security;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 
 namespace MetroFramework.Forms
 {
     public class MetroForm : Form, IMetroForm
     {
+        #region Enums
+
+        public enum MetroFormTextAlign
+        {
+            Left,
+            Center,
+            Right
+        }
+
+        public enum MetroFormShadowType
+        {
+            None,
+            Flat,
+            DropShadow,
+            SystemShadow,
+            AeroShadow
+        }
+
+        public enum MetroFormBorderStyle
+        {
+            None,
+            FixedSingle
+        }
+
+        public enum BackImgLocation
+        {
+            TopLeft,
+            TopRight,
+            BottomLeft,
+            BottomRight
+        }
+
+        #endregion
 
         #region Variables
         private const int FirstButtonSpacerWidth = 40;
@@ -68,7 +104,8 @@ namespace MetroFramework.Forms
 
         #region Fields
 
-        [Browsable(false)]
+        [Browsable(true)]
+        [Category("Metro Appearance")]
         public override Color BackColor
         {
             get
@@ -77,47 +114,147 @@ namespace MetroFramework.Forms
             }
         }
 
-        [Browsable(false)]
-        public new FormBorderStyle FormBorderStyle
+        private const int borderWidth = 1;
+        [Category("Metro Appearance")]
+        public  int BorderWidth
         {
             get
             {
-                if (DesignMode)
-                {
-                    base.FormBorderStyle = FormBorderStyle.None;
-                }
-
-                return base.FormBorderStyle;
-            }
-            set
-            {
-                if (DesignMode)
-                {
-                    base.FormBorderStyle = FormBorderStyle.None;
-                    return;
-                }
-
-                base.FormBorderStyle = value;
+                return borderWidth;
             }
         }
 
+        private MetroFormBorderStyle formBorderStyle = MetroFormBorderStyle.None;
+        [DefaultValue(MetroFormBorderStyle.None)]
+        [Browsable(true)]
+        [Category("Metro Appearance")]
+        public MetroFormBorderStyle BorderStyle
+        {
+            get { return formBorderStyle; }
+            set { formBorderStyle = value; }
+        }
+
+
+        [Browsable(false)]
+        public new FormBorderStyle FormBorderStyle
+        {
+            get { return base.FormBorderStyle; }
+            set { base.FormBorderStyle = value; }
+        }
+
         private bool isMovable = true;
+        [Category("Metro Appearance")]
         public bool Movable
         {
             get { return isMovable; }
             set { isMovable = value; }
         }
 
+        [Category("Metro Appearance")]
+        public new Padding Padding
+        {
+            get { return base.Padding; }
+            set
+            {
+                value.Top = Math.Max(value.Top, DisplayHeader ? 60 : 30);
+                base.Padding = value;
+            }
+        }
+
+        [Category("Metro Appearance")]
+        protected override Padding DefaultPadding
+        {
+            get { return new Padding(20, DisplayHeader ? 60 : 20, 20, 20); }
+        }
+
+        private bool displayHeader = true;
+        [Category("Metro Appearance")]
+        [DefaultValue(true)]
+        public bool DisplayHeader
+        {
+            get { return displayHeader; }
+            set
+            {
+                if (value != displayHeader)
+                {
+                    Padding p = base.Padding;
+                    p.Top += value ? 30 : -35;
+                    base.Padding = p;
+                }
+                displayHeader = value;
+            }
+        }
+
+        private bool isResizable = true;
+        [Category("Metro Appearance")]
+        public bool Resizable
+        {
+            get { return isResizable; }
+            set { isResizable = value; }
+        }
+
+        private Bitmap _image = null;
+        private Image backImage;
+        [Category("Metro Appearance")]
+        [DefaultValue(null)]
+        public Image BackImage
+        {
+            get { return backImage; }
+            set
+            {
+                backImage = value;
+                if (value != null) _image = new Bitmap(value); // ApplyInvert(new Bitmap(value));
+                Refresh();
+            }
+        }
+
+        private Padding backImagePadding = new Padding(200, 10, 0, 0);
+        [Category("Metro Appearance")]
+        public Padding BackImagePadding
+        {
+            get { return backImagePadding; }
+            set
+            {
+                backImagePadding = value;
+                Refresh();
+            }
+        }
+
+        private int backImageMaxSize = 50;
+        [Category("Metro Appearance")]
+        public int BackImageMaxSize
+        {
+            get { return backImageMaxSize; }
+            set
+            {
+                backImageMaxSize = value;
+                Refresh();
+            }
+        }
+
+        private BackImgLocation backImageLocation;
+        [Category("Metro Appearance")]
+        [DefaultValue(BackImgLocation.TopLeft)]
+        public BackImgLocation BackImageLocation
+        {
+            get { return backImageLocation; }
+            set
+            {
+                backImageLocation = value;
+                Refresh();
+            }
+        }
+
         private DwmApi.MARGINS dwmMargins;
         private bool isMarginOk;
 
-        private bool isAeroEnabled=false;
+        private bool isAeroEnabled = false;
+        [Category("Metro Appearance")]
         public bool AeroEnabled
         {
             get { return isAeroEnabled; }
         }
 
-        private int borderWidth = 5;
 
         #endregion
 
@@ -130,7 +267,6 @@ namespace MetroFramework.Forms
                      ControlStyles.ResizeRedraw |
                      ControlStyles.UserPaint, true);
 
-            Padding = new Padding(20, 60, 20, 20);
 
             if (!_isVistaOrHigher)
             {
@@ -157,7 +293,69 @@ namespace MetroFramework.Forms
                 e.Graphics.FillRectangle(b, topRect);
             }
 
+            //Border Style
+            if (BorderStyle != MetroFormBorderStyle.None)
+            {
+                Color c = MetroPaint.BorderColor.Form(Theme);
+
+                using (Pen pen = new Pen(c))
+                {
+                    e.Graphics.DrawLines(pen, new[]
+                        {
+                            new Point(0, borderWidth),
+                            new Point(0, Height - 1),
+                            new Point(Width - 1, Height - 1),
+                            new Point(Width - 1, borderWidth)
+                        });
+                }
+            }
+
+            //drwa Image
+            if (backImage != null && backImageMaxSize != 0)
+            {
+                Image img = MetroDrawingMethods.ResizeImage(backImage, new Rectangle(0, 0, backImageMaxSize, backImageMaxSize));
+                //if (_imageinvert)
+                //{
+                //    img = MetroImage.ResizeImage((Theme == MetroThemeStyle.Dark) ? _image : backImage, new Rectangle(0, 0, backImageMaxSize, backImageMaxSize));
+                //}
+
+                switch (backImageLocation)
+                {
+                    case BackImgLocation.TopLeft:
+                        e.Graphics.DrawImage(img, 0 + backImagePadding.Left, 0 + backImagePadding.Top);
+                        break;
+                    case BackImgLocation.TopRight:
+                        e.Graphics.DrawImage(img, ClientRectangle.Right - (backImagePadding.Right + img.Width), 0 + backImagePadding.Top);
+                        break;
+                    case BackImgLocation.BottomLeft:
+                        e.Graphics.DrawImage(img, 0 + backImagePadding.Left, ClientRectangle.Bottom - (img.Height + backImagePadding.Bottom));
+                        break;
+                    case BackImgLocation.BottomRight:
+                        e.Graphics.DrawImage(img, ClientRectangle.Right - (backImagePadding.Right + img.Width),
+                                             ClientRectangle.Bottom - (img.Height + backImagePadding.Bottom));
+                        break;
+                }
+            }
+
+            //draw Text
             TextRenderer.DrawText(e.Graphics, Text, MetroFonts.Title, new Point(20, 20), foreColor);
+
+            //design Grip
+            if (Resizable && (SizeGripStyle == SizeGripStyle.Auto || SizeGripStyle == SizeGripStyle.Show))
+            {
+                using (SolidBrush b = new SolidBrush(MetroPaint.ForeColor.FormGrip(Theme)))
+                {
+                    Size resizeHandleSize = new Size(2, 2);
+                    e.Graphics.FillRectangles(b, new Rectangle[] {
+                        new Rectangle(new Point(ClientRectangle.Width-6,ClientRectangle.Height-6), resizeHandleSize),
+                        new Rectangle(new Point(ClientRectangle.Width-10,ClientRectangle.Height-10), resizeHandleSize),
+                        new Rectangle(new Point(ClientRectangle.Width-10,ClientRectangle.Height-6), resizeHandleSize),
+                        new Rectangle(new Point(ClientRectangle.Width-6,ClientRectangle.Height-10), resizeHandleSize),
+                        new Rectangle(new Point(ClientRectangle.Width-14,ClientRectangle.Height-6), resizeHandleSize),
+                        new Rectangle(new Point(ClientRectangle.Width-6,ClientRectangle.Height-14), resizeHandleSize)
+                    });
+                }
+            }
         }
 
         #endregion
@@ -193,6 +391,9 @@ namespace MetroFramework.Forms
 
                     if (MinimizeBox)
                         AddWindowButton(WindowButtons.Minimize);
+
+                    if (HelpButton)
+                        AddWindowButton(WindowButtons.Help);
 
                     UpdateWindowButtonPosition();
                 }
@@ -270,7 +471,8 @@ namespace MetroFramework.Forms
                     Marshal.StructureToPtr(nccsp, m.LParam, false);
 
                     m.Result = IntPtr.Zero;
-                } else if (m.Msg == (int) WinApi.Messages.WM_LBUTTONDBLCLK)
+                }
+                else if (m.Msg == (int)WinApi.Messages.WM_LBUTTONDBLCLK)
                 {
                     // Alow the form to be normalized / maximized when
                     // clicked inside our top header area rectangle.
@@ -284,6 +486,10 @@ namespace MetroFramework.Forms
                 {
                     m.Result = HitTestNCA(m.HWnd, m.WParam, m.LParam);
                 }
+                else if (m.Msg == (int)WinApi.Messages.WM_GETMINMAXINFO)
+                {
+                    OnGetMinMaxInfo(m.HWnd, m.LParam);
+                }
                 else
                 {
                     base.WndProc(ref m);
@@ -294,19 +500,46 @@ namespace MetroFramework.Forms
                 base.WndProc(ref m);
             }
         }
+        [SecuritySafeCritical]
+        private unsafe void OnGetMinMaxInfo(IntPtr hwnd, IntPtr lParam)
+        {
+            WinApi.MINMAXINFO* pmmi = (WinApi.MINMAXINFO*)lParam;
+
+            //YOROCA MDI PARENT
+            Screen s = Screen.FromHandle(hwnd);
+            //if (IsMdiChild)
+            if (this.Parent != null)
+            {
+                pmmi->ptMaxSize.x = this.Parent.ClientRectangle.Size.Width;
+                pmmi->ptMaxSize.y = this.Parent.ClientRectangle.Size.Height;
+            }
+            else
+            {
+                pmmi->ptMaxSize.x = s.WorkingArea.Width;
+                pmmi->ptMaxSize.y = s.WorkingArea.Height;
+            }
+            pmmi->ptMaxPosition.x = Math.Abs(s.WorkingArea.Left - s.Bounds.Left);
+            pmmi->ptMaxPosition.y = Math.Abs(s.WorkingArea.Top - s.Bounds.Top);
+
+            //if (MinimumSize.Width > 0) pmmi->ptMinTrackSize.x = MinimumSize.Width;
+            //if (MinimumSize.Height > 0) pmmi->ptMinTrackSize.y = MinimumSize.Height;
+            //if (MaximumSize.Width > 0) pmmi->ptMaxTrackSize.x = MaximumSize.Width;
+            //if (MaximumSize.Height > 0) pmmi->ptMaxTrackSize.y = MaximumSize.Height;
+        }
 
         private IntPtr HitTestNCA(IntPtr hwnd, IntPtr wparam, IntPtr lparam)
         {
             Rectangle testRect = Rectangle.Empty;
 
             Point p = new Point((Int16)lparam, (Int16)((int)lparam >> 16));
+            int vPadding = Math.Max(Padding.Right, Padding.Bottom);
 
 
             // Determine if mouse xy is within our range of the "top header" area 
             // which allows for double clicking for either minimize/maximizing form.
             testRect = RectangleToScreen(new Rectangle(0, 0, Width - FirstButtonSpacerWidth, TopBottomMinMaximizeHitboxRange));
             _isMouseXyWithinTopHeaderArea = testRect.Contains(p);
-            
+
             testRect = RectangleToScreen(new Rectangle(0, 0, dwmMargins.cxLeftWidth, dwmMargins.cxLeftWidth));
             if (testRect.Contains(p))
                 return new IntPtr((int)WinApi.HitTest.HTTOPLEFT);
@@ -322,6 +555,12 @@ namespace MetroFramework.Forms
             testRect = RectangleToScreen(new Rectangle(Width - dwmMargins.cxRightWidth, Height - dwmMargins.cyBottomHeight, dwmMargins.cxRightWidth, dwmMargins.cyBottomHeight));
             if (testRect.Contains(p))
                 return new IntPtr((int)WinApi.HitTest.HTBOTTOMRIGHT);
+
+            if (isResizable)
+            {
+                if (RectangleToScreen(new Rectangle(ClientRectangle.Width - vPadding, ClientRectangle.Height - vPadding, vPadding, vPadding)).Contains(p))
+                    return new IntPtr((int)WinApi.HitTest.HTBOTTOMRIGHT);
+            }
 
             testRect = RectangleToScreen(new Rectangle(0, 0, Width, dwmMargins.cxLeftWidth));
             if (testRect.Contains(p))
@@ -342,6 +581,7 @@ namespace MetroFramework.Forms
             testRect = RectangleToScreen(new Rectangle(0, Height - dwmMargins.cyBottomHeight, Width, dwmMargins.cyBottomHeight));
             if (testRect.Contains(p))
                 return new IntPtr((int)WinApi.HitTest.HTBOTTOM);
+
 
             return new IntPtr((int)WinApi.HitTest.HTCLIENT);
         }
@@ -371,7 +611,8 @@ namespace MetroFramework.Forms
         {
             Minimize,
             Maximize,
-            Close
+            Close,
+            Help
         }
 
         private Dictionary<WindowButtons, MetroFormButton> windowButtonList;
@@ -400,6 +641,10 @@ namespace MetroFramework.Forms
                     newButton.Text = "1";
                 else
                     newButton.Text = "2";
+            }
+            else if (button == WindowButtons.Help)
+            {
+                newButton.Text = "s";
             }
 
             newButton.Tag = button;
@@ -438,6 +683,11 @@ namespace MetroFramework.Forms
                         btn.Text = "1";
                     }
                 }
+                else if (btnFlag == WindowButtons.Help)
+                {
+                    OnHelpButtonClicked(new CancelEventArgs(false));
+                    btn.Text = "s";
+                }
             }
         }
 
@@ -445,11 +695,12 @@ namespace MetroFramework.Forms
         {
 
             // Button drawing priority.
-            var priorityOrder = new Dictionary<int, WindowButtons>(3)
+            var priorityOrder = new Dictionary<int, WindowButtons>(4)
                                 {
                                     {0, WindowButtons.Close},
                                     {1, WindowButtons.Maximize},
-                                    {2, WindowButtons.Minimize}
+                                    {2, WindowButtons.Minimize},
+                                    {3, WindowButtons.Help}
                                 };
 
             // Position of the first button drawn
@@ -654,9 +905,26 @@ namespace MetroFramework.Forms
             WinApi.RemoveMenu(hMenu, (uint)(n - 1), WinApi.MfByposition | WinApi.MfRemove);
             WinApi.RemoveMenu(hMenu, (uint)(n - 2), WinApi.MfByposition | WinApi.MfRemove);
             WinApi.DrawMenuBar(frm.Handle);
+
+        }
+
+        [SecuritySafeCritical]
+        private static bool IsAeroThemeEnabled()
+        {
+            if (Environment.OSVersion.Version.Major <= 5) return false;
+
+            bool aeroEnabled;
+            DwmApi.DwmIsCompositionEnabled(out aeroEnabled);
+            return aeroEnabled;
+        }
+
+        private static bool IsDropShadowSupported()
+        {
+            return Environment.OSVersion.Version.Major > 5 && SystemInformation.IsDropShadowEnabled;
         }
 
         #endregion
+
 
     }
 }
