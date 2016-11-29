@@ -45,6 +45,7 @@ namespace MetroFramework.Drawing
 
     public sealed class MetroPaint
     {
+        #region ... Border Colors ...
         public sealed class BorderColor
         {
             public static Color Form(MetroThemeStyle theme)
@@ -53,6 +54,48 @@ namespace MetroFramework.Drawing
                     return Color.FromArgb(68, 68, 68);
 
                 return Color.FromArgb(204, 204, 204);
+            }
+
+            public static class ScrollBar
+            {
+                public static Color Normal(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(17, 17, 17);
+
+                    return Color.FromArgb(155, 155, 155);
+                }
+            }
+
+
+            public static class Panel
+            {
+                public static Color Normal(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(68, 68, 68);
+
+                    return Color.FromArgb(204, 204, 204);
+                }
+
+                public static Color Disabled(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(109, 109, 109);
+
+                    return Color.FromArgb(155, 155, 155);
+                }
+            }
+
+            public static class DataGrid
+            {
+                public static Color GridColor(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(68, 68, 68);
+
+                    return Color.FromArgb(204, 204, 204);
+                }
             }
 
             public static class KnobControl
@@ -320,7 +363,9 @@ namespace MetroFramework.Drawing
                 }
             }
         }
+        #endregion
 
+        #region ... Back Colors ...
         public sealed class BackColor
         {
             public static Color Form(MetroThemeStyle theme)
@@ -331,6 +376,64 @@ namespace MetroFramework.Drawing
                 return Color.FromArgb(255, 255, 255);
             }
 
+            public static class Panel
+            {
+                public static Color Normal(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(17, 17, 17);
+
+                    return Color.FromArgb(255, 255, 255);
+                }
+            }
+
+            public static class DataGrid
+            {
+                public static Color Normal(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(17, 17, 17);
+
+                    return Color.FromArgb(255, 255, 255);
+                }
+                public static Color Background(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(17, 17, 17);
+
+                    return Color.FromArgb(255, 255, 255);
+                }
+                public static Color DefaultCellStyle(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(17, 17, 17);
+
+                    return Color.FromArgb(255, 255, 255);
+                }
+                public static Color ColumnHeadersDefaultCellStyle(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return MetroPaint.GetStyleColor(style);
+                }
+
+                public static Color RowHeadersDefaultCellStyle(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return MetroPaint.GetStyleColor(style);
+                }
+
+                public static Color DefaultCellStyleSelectionBackColor(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return MetroPaint.GetStyleColor(style);
+                }
+
+                public static Color RowHeadersDefaultCellStyleSelectionBackColor(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return MetroPaint.GetStyleColor(style);
+                }
+                public static Color ColumnHeadersDefaultCellStyleSelectionBackColor(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    return MetroPaint.GetStyleColor(style);
+                }
+            }
 
             public static class KnobControl
             {
@@ -423,6 +526,14 @@ namespace MetroFramework.Drawing
                     return Color.FromArgb(238, 238, 238);
                 }
 
+                public static Color Normal2(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(68, 68, 68);
+
+                    return Color.FromArgb(208, 208, 208);
+                }
+
                 public static Color Hover(MetroThemeStyle theme)
                 {
                     if (theme == MetroThemeStyle.Dark)
@@ -431,12 +542,28 @@ namespace MetroFramework.Drawing
                     return Color.FromArgb(102, 102, 102);
                 }
 
+                public static Color Hover2(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(190, 190, 190);
+
+                    return Color.FromArgb(82, 82, 82);
+                }
+
                 public static Color Press(MetroThemeStyle theme)
                 {
                     if (theme == MetroThemeStyle.Dark)
                         return Color.FromArgb(238, 238, 238);
 
                     return Color.FromArgb(51, 51, 51);
+                }
+
+                public static Color Press2(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(248, 248, 248);
+
+                    return Color.FromArgb(31, 31, 31);
                 }
 
                 public static Color Disabled(MetroThemeStyle theme)
@@ -632,9 +759,80 @@ namespace MetroFramework.Drawing
                 }
             }
         }
+        #endregion
 
+        #region ... Fore Colors ...
         public sealed class ForeColor
         {
+            public static class ListView
+            {
+                public static Color Normal(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(109, 109, 109);
+
+                    return Color.FromArgb(136, 136, 136);
+                }
+                public static Color Selected(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(17, 17, 17);
+
+                    return Color.FromArgb(255, 255, 255);
+                }
+            }
+
+            public static class DataGrid
+            {
+                public static Color Normal(MetroThemeStyle theme)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(109, 109, 109);
+
+                    return Color.FromArgb(136, 136, 136);
+                }
+
+                public static Color ColumnHeadersDefaultCellStyle(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(17, 17, 17);
+
+                    return Color.FromArgb(255, 255, 255);
+                }
+
+                public static Color RowHeadersDefaultCellStyle(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(17, 17, 17);
+
+                    return Color.FromArgb(255, 255, 255);
+                }
+
+                public static Color DefaultCellStyleSelectionForeColor(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(17, 17, 17);
+
+                    return Color.FromArgb(255, 255, 255);
+                }
+
+                public static Color RowHeadersDefaultCellStyleSelectionForeColor(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(17, 17, 17);
+
+                    return Color.FromArgb(255, 255, 255);
+                }
+
+                public static Color ColumnHeadersDefaultCellStyleSelectionForeColor(MetroThemeStyle theme, MetroColorStyle style)
+                {
+                    if (theme == MetroThemeStyle.Dark)
+                        return Color.FromArgb(17, 17, 17);
+
+                    return Color.FromArgb(255, 255, 255);
+                }
+            }
+
             public static class KnobControl
             {
                 public static Color Normal(MetroThemeStyle theme)
@@ -1015,7 +1213,9 @@ namespace MetroFramework.Drawing
                 }
             }
         }
+        #endregion
 
+        #region ... Menus ColorTable Colors ...
         public sealed class ColorTable
         {
             public sealed class Grip
@@ -1231,9 +1431,9 @@ namespace MetroFramework.Drawing
             }
 
         }
+        #endregion
 
-
-        #region Helper Methods
+        #region ... Helper Methods ...
 
         public static Color GetStyleColor(MetroColorStyle style)
         {

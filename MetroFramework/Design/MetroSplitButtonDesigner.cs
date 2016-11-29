@@ -27,7 +27,7 @@ using System.Windows.Forms.Design;
 
 namespace MetroFramework.Design
 {
-    internal class MetroPropertyGridDesigner : ControlDesigner
+    internal class MetroSplitButtonDesigner : ControlDesigner
     {
         public override SelectionRules SelectionRules
         {
@@ -39,6 +39,8 @@ namespace MetroFramework.Design
 
         protected override void PreFilterProperties(IDictionary properties)
         {
+
+            properties.Remove("FlatAppearance");
 
             base.PreFilterProperties(properties);
         }

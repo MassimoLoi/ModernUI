@@ -1,4 +1,27 @@
-﻿using System;
+﻿/**
+ * MetroFramework - ExtendedRendering - Modern UI for WinForms
+ * 
+ * The MIT License (MIT)
+ * Copyright (c) 2016 Angelo Cresta, http://quarztech.com
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of 
+ * this software and associated documentation files (the "Software"), to deal in the 
+ * Software without restriction, including without limitation the rights to use, copy, 
+ * modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, 
+ * and to permit persons to whom the Software is furnished to do so, subject to the 
+ * following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in 
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
+ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
+ * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
+ * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+using System;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using System.Drawing;
@@ -7,25 +30,35 @@ using System.ComponentModel;
 using MetroFramework.Components;
 using MetroFramework.Drawing;
 using MetroFramework.Interfaces;
+using MetroFramework.Design;
 
 
 namespace MetroFramework.Controls
 {
+    [Designer(typeof(MetroSplitButtonDesigner))]
     [System.Drawing.ToolboxBitmapAttribute(typeof(System.Windows.Forms.Button))]
-    public class MetroSplitButton : MetroButton
+    public class MetroSplitButton : MetroButtonStyled
     {
 
-        private const int PushButtonWidth = 14;
+        #region "   Fields   "
+        private const int PushButtonWidth = 16;
         private readonly static int BorderSize = SystemInformation.Border3DSize.Width * 2;
         private bool skipNextOpen = false;
         private Rectangle dropDownRectangle = new Rectangle();
         private bool showSplit = true;
+        #endregion
+
+        #region "   Constructor   "
 
         public MetroSplitButton()
         {
             AutoSize = true;
-        }
+            this.FlatAppearance = true;
 
+        }
+        #endregion
+
+        #region "   Properties   "
         [DefaultValue(true)]
         public bool ShowSplit
         {
@@ -46,6 +79,9 @@ namespace MetroFramework.Controls
                 return showSplit;
             }
         }
+        #endregion
+
+        #region "   Overrides   "
 
         public override Size GetPreferredSize(Size proposedSize)
         {
@@ -137,8 +173,8 @@ namespace MetroFramework.Controls
             Pen face = SystemPens.ButtonFace;
 
 
-            shadow = new Pen(MetroPaint.ColorTable.Grip.Dark(Theme, Style));
-            face = new Pen(MetroPaint.ColorTable.Grip.Light(Theme, Style));
+            shadow = new Pen(MetroPaint.BorderColor.Button.Disabled(Theme));
+            face = new Pen(MetroPaint.BorderColor.Button.Normal(Theme));
 
            // if (palette != null)
            // {
@@ -164,21 +200,11 @@ namespace MetroFramework.Controls
             }
 
             // Draw an arrow in the correct location 
-            PaintArrow(g, dropDownRectangle);
+            MetroDrawingMethods.PaintDownArrow(g, dropDownRectangle, MetroPaint.BorderColor.Button.Disabled(Theme), 0, 0);
         }
+        #endregion
 
-        private static void PaintArrow(Graphics g, Rectangle dropDownRect)
-        {
-            Point middle = new Point(Convert.ToInt32(dropDownRect.Left + dropDownRect.Width / 2), Convert.ToInt32(dropDownRect.Top + dropDownRect.Height / 2));
-
-            //if the width is odd - favor pushing it over one pixel right. 
-            middle.X += (dropDownRect.Width % 2);
-
-            Point[] arrow = new Point[] { new Point(middle.X - 2, middle.Y - 1), new Point(middle.X + 3, middle.Y - 1), new Point(middle.X, middle.Y + 2) };
-
-            g.FillPolygon(SystemBrushes.ControlText, arrow);
-        }
-
+        #region "   Contextmenu Handling   "
         private void ShowContextMenuStrip()
         {
             if (skipNextOpen)
@@ -230,6 +256,7 @@ namespace MetroFramework.Controls
                 skipNextOpen = (dropDownRectangle.Contains(PointToClient(Cursor.Position)));
             }
         }
+        #endregion
     }
 }
 

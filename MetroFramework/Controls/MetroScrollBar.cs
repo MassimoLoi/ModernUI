@@ -499,6 +499,31 @@ namespace MetroFramework.Controls
 
         private Timer autoHoverTimer = null;
 
+        int _borderWidth = 0;
+        [Browsable(true), Category("Metro Appearance")]
+        public int BorderWidth
+        {
+            get { return _borderWidth; }
+            set { _borderWidth = value; InitColors(); }
+        }
+
+        Color _borderColor = SystemColors.ActiveBorder;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [Browsable(false), Category("Metro Appearance")]
+        public Color BorderColor
+        {
+            get { return _borderColor; }
+            set { _borderColor = value; InitColors(); }
+        }
+        #endregion
+
+        #region ... Init Colors ...
+        private void InitColors()
+        {
+            _borderColor = MetroPaint.BorderColor.ScrollBar.Normal(Theme);
+
+            Invalidate();
+        }
         #endregion
 
         #region Constructor
@@ -595,6 +620,7 @@ namespace MetroFramework.Controls
                 base.OnPaintBackground(e);
 
                 OnCustomPaintBackground(new MetroPaintEventArgs(backColor, Color.Empty, e.Graphics));
+
             }
             catch
             {
@@ -692,6 +718,11 @@ namespace MetroFramework.Controls
             using (var b = new SolidBrush(thumbColor))
             {
                 g.FillRectangle(b, thumbRectangle);
+            }
+
+            if (this._borderWidth > 0)
+            {
+                g.DrawRectangle(new Pen(this._borderColor, _borderWidth), new Rectangle(ClientRectangle.X,ClientRectangle.Y,ClientRectangle.Width-1,ClientRectangle.Height-1));
             }
         }
 

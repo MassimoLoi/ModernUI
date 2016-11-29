@@ -1,4 +1,26 @@
-﻿
+﻿/**
+ * MetroFramework - Modern UI for WinForms
+ * 
+ * The MIT License (MIT)
+ * Copyright (c) 2016 Angelo Cresta, http://quarztech.com
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of 
+ * this software and associated documentation files (the "Software"), to deal in the 
+ * Software without restriction, including without limitation the rights to use, copy, 
+ * modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, 
+ * and to permit persons to whom the Software is furnished to do so, subject to the 
+ * following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in 
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
+ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
+ * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
+ * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
 namespace MetroFramework.Controls
 {
     using System;
@@ -8,12 +30,14 @@ namespace MetroFramework.Controls
 
     using MetroFramework.Components;
     using MetroFramework.Drawing;
+    using MetroFramework.Design;
     using MetroFramework.Interfaces;
 
+    [Designer(typeof(MetroGridDesigner))]
     [ToolboxBitmap(typeof(DataGridView))]
     public partial class MetroGrid : DataGridView, IMetroControl
     {
-        #region Interface
+        #region ... Interface ...
         [Category("Metro Appearance")]
         public event EventHandler<MetroPaintEventArgs> CustomPaintBackground;
         protected virtual void OnCustomPaintBackground(MetroPaintEventArgs e)
@@ -104,6 +128,25 @@ namespace MetroFramework.Controls
             get { return metroStyleManager; }
             set { metroStyleManager = value; StyleGrid(); }
         }
+        #endregion
+
+        #region ... Properties ...
+        private MetroDataGridSize metroDataGridSize = MetroDataGridSize.Medium;
+        [Browsable(false)]
+        public MetroDataGridSize FontSize
+        {
+            get { return metroDataGridSize; }
+            set { metroDataGridSize = value; Refresh(); }
+        }
+
+        private MetroDataGridWeight metroDataGridWeight = MetroDataGridWeight.Regular;
+        [Category("Metro Appearance")]
+        [Browsable(false)]
+        public MetroDataGridWeight FontWeight
+        {
+            get { return metroDataGridWeight; }
+            set { metroDataGridWeight = value; Refresh(); }
+        }
 
         private bool useCustomBackColor = false;
         [DefaultValue(false)]
@@ -142,6 +185,7 @@ namespace MetroFramework.Controls
         }
         #endregion
 
+        #region ... Constructor ...
         MetroDataGridHelper scrollhelper = null;
         MetroDataGridHelper scrollhelperH = null;
 
@@ -163,20 +207,22 @@ namespace MetroFramework.Controls
             scrollhelper = new MetroDataGridHelper(_vertical, this);
             scrollhelperH = new MetroDataGridHelper(_horizontal, this, false);
         }
+        #endregion
 
-
+        #region ... Overrides ...
         protected override void OnMouseWheel(MouseEventArgs e)
         {
             base.OnMouseWheel(e);
 
-            if (this.RowCount > 1) 
+            if (this.RowCount > 1)
             {
-                if (e.Delta > 0 && this.FirstDisplayedScrollingRowIndex > 0) 
+                if (e.Delta > 0 && this.FirstDisplayedScrollingRowIndex > 0)
                     this.FirstDisplayedScrollingRowIndex--;
                 else if (e.Delta < 0)
                     this.FirstDisplayedScrollingRowIndex++;
             }
         }
+        #endregion
 
         private void StyleGrid()
         {
@@ -184,39 +230,42 @@ namespace MetroFramework.Controls
             this.CellBorderStyle = DataGridViewCellBorderStyle.None;
             this.EnableHeadersVisualStyles = false;
             this.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            this.BackColor = MetroPaint.BackColor.Form(Theme);
-            this.BackgroundColor = MetroPaint.BackColor.Form(Theme);
-            this.GridColor = MetroPaint.BackColor.Form(Theme);
-            this.ForeColor = MetroPaint.ForeColor.Button.Disabled(Theme);
-            this.Font = new Font("Segoe UI", 11f, FontStyle.Regular, GraphicsUnit.Pixel);
+
+            this.BackColor = MetroPaint.BackColor.DataGrid.Normal(Theme); //MetroPaint.BackColor.Form(Theme);
+            this.BackgroundColor = MetroPaint.BackColor.DataGrid.Background(Theme); //MMetroPaint.BackColor.Form(Theme);
+            this.GridColor = MetroPaint.BorderColor.DataGrid.GridColor(Theme); // MetroPaint.BackColor.Form(Theme);
+            this.ForeColor = MetroPaint.ForeColor.DataGrid.Normal(Theme);
+
+            this.Font = MetroFonts.DataGrid(metroDataGridSize, metroDataGridWeight); //new Font("Segoe UI", 11f, FontStyle.Regular, GraphicsUnit.Pixel);
 
             this.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.AllowUserToResizeRows = false;
 
             this.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            this.ColumnHeadersDefaultCellStyle.BackColor = MetroPaint.GetStyleColor(Style);
-            this.ColumnHeadersDefaultCellStyle.ForeColor = MetroPaint.ForeColor.Button.Press(Theme);
+            this.ColumnHeadersDefaultCellStyle.BackColor = MetroPaint.BackColor.DataGrid.ColumnHeadersDefaultCellStyle(Theme, Style); // MetroPaint.GetStyleColor(Style);
+            this.ColumnHeadersDefaultCellStyle.ForeColor = MetroPaint.ForeColor.DataGrid.ColumnHeadersDefaultCellStyle(Theme, Style);
+            this.ColumnHeadersDefaultCellStyle.SelectionBackColor = MetroPaint.BackColor.DataGrid.ColumnHeadersDefaultCellStyleSelectionBackColor(Theme, Style); //MetroPaint.GetStyleColor(Style);
+            this.ColumnHeadersDefaultCellStyle.SelectionForeColor = MetroPaint.ForeColor.DataGrid.ColumnHeadersDefaultCellStyleSelectionForeColor(Theme, Style); //(Theme == MetroThemeStyle.Light) ? Color.FromArgb(17, 17, 17) : Color.FromArgb(255, 255, 255);
+            this.ColumnHeadersDefaultCellStyle.Font = MetroFonts.DataGrid(MetroDataGridSize.Medium, MetroDataGridWeight.Bold);
 
             this.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            this.RowHeadersDefaultCellStyle.BackColor = MetroPaint.GetStyleColor(Style);
-            this.RowHeadersDefaultCellStyle.ForeColor = MetroPaint.ForeColor.Button.Press(Theme);
+            this.RowHeadersDefaultCellStyle.BackColor = MetroPaint.BackColor.DataGrid.RowHeadersDefaultCellStyle(Theme, Style); //MetroPaint.GetStyleColor(Style);
+            this.RowHeadersDefaultCellStyle.ForeColor = MetroPaint.ForeColor.DataGrid.RowHeadersDefaultCellStyle(Theme, Style);
+            this.RowHeadersDefaultCellStyle.SelectionBackColor = MetroPaint.BackColor.DataGrid.RowHeadersDefaultCellStyleSelectionBackColor(Theme, Style); //MetroPaint.BackColor.DataGrid.RowHeadersDefaultCellStyleSelectionBackColor(Theme, Style); //MetroPaint.GetStyleColor(Style);
+            this.RowHeadersDefaultCellStyle.SelectionForeColor = MetroPaint.ForeColor.DataGrid.RowHeadersDefaultCellStyleSelectionForeColor(Theme, Style); //(Theme == MetroThemeStyle.Light) ? Color.FromArgb(17, 17, 17) : Color.FromArgb(255, 255, 255);
+            this.RowHeadersDefaultCellStyle.Font = MetroFonts.DataGrid(MetroDataGridSize.Medium, MetroDataGridWeight.Bold);
 
-            this.DefaultCellStyle.BackColor = MetroPaint.BackColor.Form(Theme);
+            this.DefaultCellStyle.BackColor = MetroPaint.BackColor.DataGrid.DefaultCellStyle(Theme); //MetroPaint.BackColor.Form(Theme);
+            this.DefaultCellStyle.SelectionBackColor = MetroPaint.BackColor.DataGrid.DefaultCellStyleSelectionBackColor(Theme, Style); //MetroPaint.GetStyleColor(Style);
+            this.DefaultCellStyle.SelectionForeColor = MetroPaint.ForeColor.DataGrid.DefaultCellStyleSelectionForeColor(Theme, Style); //(Theme == MetroThemeStyle.Light) ? Color.FromArgb(17, 17, 17) : Color.FromArgb(255, 255, 255);
+            this.DefaultCellStyle.SelectionBackColor = MetroPaint.BackColor.DataGrid.DefaultCellStyleSelectionBackColor(Theme, Style); //MetroPaint.GetStyleColor(Style);
+            this.DefaultCellStyle.SelectionForeColor = MetroPaint.ForeColor.DataGrid.DefaultCellStyleSelectionForeColor(Theme, Style); //(Theme == MetroThemeStyle.Light) ? Color.FromArgb(17, 17, 17) : Color.FromArgb(255, 255, 255);
+            this.DefaultCellStyle.Font = MetroFonts.DataGrid(MetroDataGridSize.Medium, MetroDataGridWeight.Regular);
 
-            this.DefaultCellStyle.SelectionBackColor = MetroPaint.GetStyleColor(Style);
-            this.DefaultCellStyle.SelectionForeColor = (Theme == MetroThemeStyle.Light) ? Color.FromArgb(17, 17, 17) : Color.FromArgb(255, 255, 255);
-
-            this.DefaultCellStyle.SelectionBackColor = MetroPaint.GetStyleColor(Style);
-            this.DefaultCellStyle.SelectionForeColor = (Theme == MetroThemeStyle.Light) ? Color.FromArgb(17, 17, 17) : Color.FromArgb(255, 255, 255);
-
-            this.RowHeadersDefaultCellStyle.SelectionBackColor = MetroPaint.GetStyleColor(Style);
-            this.RowHeadersDefaultCellStyle.SelectionForeColor = (Theme == MetroThemeStyle.Light) ? Color.FromArgb(17, 17, 17) : Color.FromArgb(255, 255, 255);
-
-            this.ColumnHeadersDefaultCellStyle.SelectionBackColor = MetroPaint.GetStyleColor(Style);
-            this.ColumnHeadersDefaultCellStyle.SelectionForeColor = (Theme == MetroThemeStyle.Light) ? Color.FromArgb(17, 17, 17) : Color.FromArgb(255, 255, 255);
         }
     }
 
+    #region ... dataGrid Helper ...
     public class MetroDataGridHelper
     {
         /// <summary>
@@ -417,5 +466,7 @@ namespace MetroFramework.Controls
             UpdateScrollbar();
         }
         #endregion
+
     }
+    #endregion
 }

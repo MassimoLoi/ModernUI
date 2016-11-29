@@ -7,3 +7,4 @@ D:\Projects\_Comp\ModernUI\MetroFramework\obj\Debug\MetroFramework.Properties.Re
 D:\Projects\_Comp\ModernUI\MetroFramework\obj\Debug\MetroFramework.csproj.GenerateResource.Cache
 D:\Projects\_Comp\ModernUI\MetroFramework\obj\Debug\MetroFramework.dll
 D:\Projects\_Comp\ModernUI\MetroFramework\obj\Debug\MetroFramework.pdb
+D:\Projects\_Comp\ModernUI\MetroFramework\obj\Debug\MetroFramework.Controls.MetroListView.resources

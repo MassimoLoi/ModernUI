@@ -1,4 +1,28 @@
-﻿using MetroFramework.Drawing;
+﻿/**
+ * MetroFramework - ExtendedRendering - Modern UI for WinForms
+ * 
+ * The MIT License (MIT)
+ * Copyright (c) 2016 Angelo Cresta, http://quarztech.com
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of 
+ * this software and associated documentation files (the "Software"), to deal in the 
+ * Software without restriction, including without limitation the rights to use, copy, 
+ * modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, 
+ * and to permit persons to whom the Software is furnished to do so, subject to the 
+ * following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in 
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
+ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
+ * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
+ * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+using MetroFramework.Drawing;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -7,12 +31,13 @@ using System.Windows.Forms;
 
 using MetroFramework.Components;
 using MetroFramework.Design;
-using MetroFramework.Drawing;
 using MetroFramework.Interfaces;
+using System.Diagnostics;
 
 namespace MetroFramework.Controls
 {
-    [ToolboxBitmap(typeof(System.Windows.Forms.Button)), ToolboxItem(false)]
+    [Designer(typeof(MetroButtonStyledDesigner))]
+    [ToolboxBitmap(typeof(System.Windows.Forms.Button)), ToolboxItem(true)]
     public class MetroButtonStyled : Button, IMetroControl
     {
         #region "   Fields   "
@@ -28,7 +53,7 @@ namespace MetroFramework.Controls
         Font controlFont;
         #endregion
 
-        #region Interface
+        #region "   Interface   "
 
         private MetroColorStyle metroStyle = MetroColorStyle.Blue;
         [Category("Metro Appearance")]
@@ -69,13 +94,38 @@ namespace MetroFramework.Controls
         #endregion
 
         #region "   Properties   "
-        Boolean _useAlternateColor = false;
-        [Browsable(true), Category("Appearance-Extended")]
-        [DefaultValue("false")]
-        public Boolean UseAlternateColor
+        private MetroButtonSize metroButtonSize = MetroButtonSize.Medium;
+        [Category("Metro Appearance")]
+        [Browsable(false)]
+        public MetroButtonSize FontSize
         {
-            get { return _useAlternateColor; }
-            set { _useAlternateColor = value; InitColors(); Invalidate(); }
+            get { return metroButtonSize; }
+            set { metroButtonSize = value; Refresh(); }
+        }
+
+        private MetroButtonWeight metroButtonWeight = MetroButtonWeight.Regular;
+        [Category("Metro Appearance")]
+        [Browsable(false)]
+        public MetroButtonWeight FontWeight
+        {
+            get { return metroButtonWeight; }
+            set { metroButtonWeight = value; Refresh(); }
+        }
+
+        private bool flatMetroAppearance = false;
+        [Category("Metro Appearance")]
+        public bool FlatAppearance
+        {
+            get { return flatMetroAppearance; }
+            set { flatMetroAppearance = value; InitColors(); }
+        }
+
+        private bool highlight = false;
+        [Category("Metro Appearance")]
+        public bool Highlight
+        {
+            get { return highlight; }
+            set { highlight = value; }
         }
         #endregion
 
@@ -89,6 +139,9 @@ namespace MetroFramework.Controls
             UpdateStyles();
 
             this.DoubleBuffered = true;
+
+            //set font
+            this.Font = MetroFonts.Button(metroButtonSize, metroButtonWeight);
         }
 
         #endregion
@@ -201,9 +254,16 @@ namespace MetroFramework.Controls
         private void SetControlSizes()
         {
             int scalingDividend = Math.Min(ClientRectangle.Width, ClientRectangle.Height);
-            buttonRect = new Rectangle(ClientRectangle.X, ClientRectangle.Y, ClientRectangle.Width - 1, ClientRectangle.Height - 1);
+            buttonRect = new Rectangle(ClientRectangle.X, ClientRectangle.Y, ClientRectangle.Width, ClientRectangle.Height);
             rectCornerRadius = Math.Max(1, scalingDividend / 10);
             rectOutlineWidth = Math.Max(1, scalingDividend / 50);
+
+            if (flatMetroAppearance)
+            {
+                rectCornerRadius = 0;
+                buttonRect.Width -= 1;
+                buttonRect.Height -= 1;
+            }
         }
         #endregion
 
@@ -221,10 +281,18 @@ namespace MetroFramework.Controls
             }
             else
             {
-                gp.AddArc((float)r.X, (float)r.Y, radius, radius, 180, 90);
-                gp.AddArc((float)r.Right - radius, (float)r.Y, radius - 1, radius, 270, 90);
-                gp.AddArc((float)r.Right - radius, ((float)r.Bottom) - radius - 1, radius - 1, radius, 0, 90);
-                gp.AddArc((float)r.X, ((float)r.Bottom) - radius - 1, radius - 1, radius, 90, 90);
+                try
+                {
+                    gp.AddArc((float)r.X, (float)r.Y, radius, radius, 180, 90);
+                    gp.AddArc((float)r.Right - radius, (float)r.Y, radius - 1, radius, 270, 90);
+                    gp.AddArc((float)r.Right - radius, ((float)r.Bottom) - radius - 1, radius - 1, radius, 0, 90);
+                    gp.AddArc((float)r.X, ((float)r.Bottom) - radius - 1, radius - 1, radius, 90, 90);
+                }
+                catch (Exception ex)
+                {
+                    //void error report
+                    gp.AddRectangle(r);
+                }
             }
             gp.CloseFigure();
             return gp;
@@ -244,49 +312,49 @@ namespace MetroFramework.Controls
 
             if (!this.Enabled)
             {
-                tBorder = this.colorTable.ButtonDisabledBorder;
-                tBottomColorBegin = this.colorTable.ButtonDisabledBackgroundCenter;
-                tBottomColorEnd = this.colorTable.ButtonDisabledBackgroundOuter;
-                Textcol = this.colorTable.ButtonDisabledTextColor;
+                tBorder = MetroPaint.BorderColor.Button.Disabled(Theme); 
+                tBottomColorBegin = MetroPaint.BackColor.Button.Disabled(Theme); 
+                tBottomColorEnd = MetroPaint.BackColor.Button.Disabled(Theme); 
+                Textcol = MetroPaint.ForeColor.Button.Disabled(Theme); 
             }
             else
             {
                 //Normal State
-                tBorder = this.colorTable.ButtonNormalBorder;
-                tBottomColorBegin = this.colorTable.ButtonNormalBackgroundCenter;
-                tBottomColorEnd = this.colorTable.ButtonNormalBackgroundOuter;
-                Textcol = this.colorTable.ButtonNormalTextColor;
+                tBorder = highlight ? MetroPaint.GetStyleColor(Style) : MetroPaint.BorderColor.Button.Normal(Theme);
+                tBottomColorBegin = MetroPaint.BackColor.Button.Normal(Theme);
+                tBottomColorEnd = !flatMetroAppearance ? MetroPaint.BackColor.Button.Normal2(Theme) : MetroPaint.BackColor.Button.Normal(Theme);
+                Textcol = MetroPaint.ForeColor.Button.Normal(Theme); 
                 //hot tracking - mouse over
                 if (isHotTracking)
                 {
-                    tBorder = this.colorTable.ButtonMouseOverBorder;
-                    tBottomColorBegin = this.colorTable.ButtonMouseOverBackgroundCenter;
-                    tBottomColorEnd = this.colorTable.ButtonMouseOverBackgroundOuter;
-                    Textcol = this.colorTable.ButtonMouseOverTextColor;
+                    tBorder = MetroPaint.BorderColor.Button.Hover(Theme); 
+                    tBottomColorBegin = MetroPaint.BackColor.Button.Hover(Theme);
+                    tBottomColorEnd = !flatMetroAppearance ? MetroPaint.BackColor.Button.Hover2(Theme) : MetroPaint.BackColor.Button.Hover(Theme);
+                    Textcol = MetroPaint.ForeColor.Button.Hover(Theme); 
                 }
                 //pressed
                 if (isPressed)
                 {
-                    tBorder = this.colorTable.ButtonSelectedBorder;
-                    tBottomColorBegin = this.colorTable.ButtonSelectedBackgroundCenter;
-                    tBottomColorEnd = this.colorTable.ButtonSelectedBackgroundOuter;
-                    Textcol = this.colorTable.ButtonSelectedTextColor;
+                    tBorder = MetroPaint.BorderColor.Button.Press(Theme); 
+                    tBottomColorBegin = MetroPaint.BackColor.Button.Press(Theme);
+                    tBottomColorEnd = !flatMetroAppearance ? MetroPaint.BackColor.Button.Press2(Theme) : MetroPaint.BackColor.Button.Press(Theme);
+                    Textcol = MetroPaint.ForeColor.Button.Press(Theme); 
                 }
                 //focused but not pressed
                 if ((this.Focused) && (!isPressed))
                 {
-                    tBorder = this.colorTable.ButtonFocusedBorder;
-                    tBottomColorBegin = this.colorTable.ButtonFocusedBackgroundCenter;
-                    tBottomColorEnd = this.colorTable.ButtonFocusedBackgroundOuter;
-                    Textcol = this.colorTable.ButtonFocusedTextColor;
+                    tBorder = highlight ? MetroPaint.GetStyleColor(Style) : MetroPaint.BorderColor.Button.Normal(Theme);
+                    tBottomColorBegin = MetroPaint.BackColor.Button.Normal(Theme);
+                    tBottomColorEnd = !flatMetroAppearance ? MetroPaint.BackColor.Button.Normal2(Theme) : MetroPaint.BackColor.Button.Normal(Theme);
+                    Textcol = MetroPaint.ForeColor.Button.Normal(Theme); 
                 }
                 //focused and mouse over
                 if ((this.Focused) && (isHotTracking))
                 {
-                    tBorder = this.colorTable.ButtonMouseOverBorder;
-                    tBottomColorBegin = this.colorTable.ButtonMouseOverBackgroundCenter;
-                    tBottomColorEnd = this.colorTable.ButtonMouseOverBackgroundOuter;
-                    Textcol = this.colorTable.ButtonMouseOverTextColor;
+                    tBorder = MetroPaint.BorderColor.Button.Hover(Theme); 
+                    tBottomColorBegin = MetroPaint.BackColor.Button.Hover(Theme);
+                    tBottomColorEnd = !flatMetroAppearance ? MetroPaint.BackColor.Button.Hover2(Theme) : MetroPaint.BackColor.Button.Hover(Theme);
+                    Textcol = MetroPaint.ForeColor.Button.Hover(Theme); 
                 }
             }
 
@@ -308,11 +376,26 @@ namespace MetroFramework.Controls
         }
         #endregion
 
+        #region "   Base Overridden Methods   "
+        protected override Size DefaultSize
+        {
+            get
+            {
+                // Set the default size of
+                // the control
+                return new Size(125, 35);
+            }
+        }
+        #endregion
+
         #region "   Paint Background   "
         protected void PaintBackground(PaintEventArgs e, Graphics g, Color tBorder, Color tBottomColorBegin, Color tBottomColorEnd)
         {
             //Set button radius
             int _roundedRadiusX = rectCornerRadius;
+
+            //to avoid 0 rectangle error
+            if (buttonRect.Height == 0 && buttonRect.Width == 0) SetControlSizes();
 
             //define control rectangle
             Rectangle r = buttonRect;
@@ -357,16 +440,17 @@ namespace MetroFramework.Controls
                 //end Background
 
                 //Begin Borders
+                int borderWidth = !highlight ? 1 : 3; //larger if Highlited
                 using (GraphicsPath gborderDark = thePath)
                 {
-                    using (Pen p = new Pen(tBorder, 1))
+                    using (Pen p = new Pen(tBorder, borderWidth))
                     {
                         g.DrawPath(p, gborderDark);
                     }
                     //has focus?
                     if (isHotTracking)
                     {
-                        using (Pen p = new Pen(colorTable.ButtonMouseOverBorder, 1))
+                        using (Pen p = new Pen(MetroPaint.BorderColor.Button.Hover(Theme), borderWidth))
                         {
                             g.DrawPath(p, gborderDark);
                         }
@@ -577,13 +661,17 @@ namespace MetroFramework.Controls
         private void InitColors()
         {
             //Set Colors & Fonts
-            base.Font = this.colorTable.ControlFont;
-            tBorder = colorTable.BorderColor;
-            tBottomColorBegin = colorTable.BackgroundColor1;
-            tBottomColorEnd = colorTable.BackgroundColor2;
-            Textcol = colorTable.TextColor;
-            controlFont = colorTable.ControlFont;
+            base.Font = MetroFonts.Button(metroButtonSize, metroButtonWeight); 
+            tBorder = MetroPaint.BorderColor.Button.Normal(Theme); 
+            tBottomColorBegin = MetroPaint.BackColor.Button.Normal(Theme); 
+            tBottomColorEnd = MetroPaint.BackColor.Button.Normal2(Theme); 
+            Textcol = MetroPaint.ForeColor.Button.Normal(Theme);
+            controlFont = MetroFonts.Button(metroButtonSize, metroButtonWeight);
 
+            this.Font = MetroFonts.Button(metroButtonSize, metroButtonWeight);
+
+            Invalidate();
+            Update();
         }
         #endregion
 

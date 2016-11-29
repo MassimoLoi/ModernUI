@@ -2,7 +2,7 @@
  * MetroFramework - Modern UI for WinForms
  * 
  * The MIT License (MIT)
- * Copyright (c) 2016 Angelo Cresta, http://quarztech.com
+ * Copyright (c) 2011 Sven Walter, http://github.com/viperneo
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy of 
  * this software and associated documentation files (the "Software"), to deal in the 
@@ -27,7 +27,7 @@ using System.Windows.Forms.Design;
 
 namespace MetroFramework.Design
 {
-    internal class MetroPropertyGridDesigner : ControlDesigner
+    internal class MetroMonthCalendarDesigner : ControlDesigner
     {
         public override SelectionRules SelectionRules
         {
@@ -39,6 +39,12 @@ namespace MetroFramework.Design
 
         protected override void PreFilterProperties(IDictionary properties)
         {
+            properties.Remove("Font");
+            properties.Remove("ForeColor");
+            properties.Remove("BackColor");
+            properties.Remove("TitleBackColor");
+            properties.Remove("TrailingForeColor");
+            properties.Remove("TitleForeColor"); 
 
             base.PreFilterProperties(properties);
         }

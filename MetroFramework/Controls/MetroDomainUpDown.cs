@@ -38,7 +38,7 @@ namespace MetroFramework.Controls
     [System.Drawing.ToolboxBitmapAttribute(typeof(System.Windows.Forms.DomainUpDown))]
     public class MetroDomainUpDown : DomainUpDown, IMetroControl
     {
-        #region Interface
+        #region ... Interface ...
 
         private MetroColorStyle metroStyle = MetroColorStyle.Blue;
         [Category("Metro Appearance")]
@@ -203,10 +203,6 @@ namespace MetroFramework.Controls
                         //Cutom Draw Buttons
                         if (customDrawButtons)
                         {
-                            //Arrows
-                            Point[] PtUpArrow = new Point[] { new Point { X = w / 2, Y = h / 2 - 8 }, new Point { X = w / 2 - 3, Y = h / 2 - 3 }, new Point { X = w / 2 + 3, Y = h / 2 - 3 } };
-                            Point[] PtUpDown = new Point[] { new Point { X = w / 2 - 3, Y = h / 2 + 3 }, new Point { X = w / 2 + 3, Y = h / 2 + 3 }, new Point { X = w / 2, Y = h / 2 + 8 } };
-
                             //ClearBackGround                   
                             g.FillRectangle(new SolidBrush(nudControlsBackColor), buttonsUpDownRect);
 
@@ -219,8 +215,8 @@ namespace MetroFramework.Controls
                             if (Debug) g.DrawRectangle(new Pen(Color.Blue), DownArrowRect);
 
                             //draw Arrows
-                            g.DrawPolygon(new Pen(nudControlsForeColor), PtUpArrow);
-                            g.DrawPolygon(new Pen(nudControlsForeColor), PtUpDown);
+                            MetroDrawingMethods.PaintUpArrow(g, UpArrowRect, nudControlsForeColor, 0, -1);
+                            MetroDrawingMethods.PaintDownArrow(g, DownArrowRect, nudControlsForeColor, 0, 0);
                         }
                     };
 

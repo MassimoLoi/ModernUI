@@ -27,7 +27,7 @@ using System.Windows.Forms.Design;
 
 namespace MetroFramework.Design
 {
-    internal class MetroPropertyGridDesigner : ControlDesigner
+    internal class MetroButtonStyledDesigner : ControlDesigner
     {
         public override SelectionRules SelectionRules
         {
@@ -39,6 +39,10 @@ namespace MetroFramework.Design
 
         protected override void PreFilterProperties(IDictionary properties)
         {
+
+            properties.Remove("Font");
+            properties.Remove("ForeColor");
+            properties.Remove("RightToLeft");
 
             base.PreFilterProperties(properties);
         }

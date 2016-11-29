@@ -71,6 +71,7 @@
     <Compile Include="Animation\ExpandAnimation.cs" />
     <Compile Include="Animation\MoveAnimation.cs" />
     <Compile Include="Animation\TransitionType.cs" />
+    <Compile Include="Components\ListViewColumnSorter.cs" />
     <Compile Include="Components\MetroRendererManager.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -88,6 +89,9 @@
     <Compile Include="Controls\MetroButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\MetroButtonStyled.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\MetroCheckBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -103,6 +107,9 @@
     <Compile Include="Controls\MetroGrid.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\MetroGrid.designer.cs">
+      <DependentUpon>MetroGrid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MetroGroupBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -115,7 +122,16 @@
     <Compile Include="Controls\MetroLink.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\MetroListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\MetroMonthCalendar.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\MetroNumericUpDown.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\MetroPanelNoScroll.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\MetroPanel.cs">
@@ -161,13 +177,16 @@
     <Compile Include="Controls\MetroUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Design\MetroButtonStyledDesigner.cs" />
     <Compile Include="Design\MetroDomainUpDownDesigner.cs" />
-    <Compile Include="Design\MetroGridDesigner.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Design\MetroGridDesigner.cs" />
     <Compile Include="Design\MetroGroupBoxDesigner.cs" />
+    <Compile Include="Design\MetroListViewDesigner.cs" />
+    <Compile Include="Design\MetroMonthCalendarDesigner.cs" />
     <Compile Include="Design\MetroNumericUpDownDesigner.cs" />
+    <Compile Include="Design\MetroPanelDesigner.cs" />
     <Compile Include="Design\MetroPropertyGridDesigner.cs" />
+    <Compile Include="Design\MetroSplitButtonDesigner.cs" />
     <Compile Include="Design\MetroTabPageDesigner.cs" />
     <Compile Include="Design\MetroProgressSpinnerDesigner.cs" />
     <Compile Include="Design\MetroProgressBarDesigner.cs" />
@@ -201,13 +220,13 @@
       <DependentUpon>MetroMessageBoxControl.cs</DependentUpon>
     </Compile>
     <Compile Include="MessageBox\MetroMessageBoxProperties.cs" />
-    <Compile Include="MetroBrushes.cs" />
-    <Compile Include="MetroColors.cs" />
-    <Compile Include="MetroColorStyle.cs" />
-    <Compile Include="MetroDefaults.cs" />
-    <Compile Include="MetroFonts.cs" />
-    <Compile Include="MetroPens.cs" />
-    <Compile Include="MetroThemeStyle.cs" />
+    <Compile Include="Style\MetroBrushes.cs" />
+    <Compile Include="Style\MetroColors.cs" />
+    <Compile Include="Style\MetroColorStyle.cs" />
+    <Compile Include="Style\MetroDefaults.cs" />
+    <Compile Include="Style\MetroFonts.cs" />
+    <Compile Include="Style\MetroPens.cs" />
+    <Compile Include="Style\MetroThemeStyle.cs" />
     <Compile Include="Native\DwmApi.cs" />
     <Compile Include="Native\SubClass.cs" />
     <Compile Include="Native\Taskbar.cs" />
@@ -247,6 +266,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Controls\MetroGrid.resx">
       <DependentUpon>MetroGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MetroListView.resx">
+      <DependentUpon>MetroListView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Localization\de\MetroToggle.xml" />
     <EmbeddedResource Include="MessageBox\MetroMessageBoxControl.resx">

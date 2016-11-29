@@ -28,6 +28,8 @@ Extended Controls supported
 * NumericUpDown
 * DomainUpDown
 * SplitButton
+* ButtonStyled
+* ListView
 
 Original Controls supported
 ---------------------------

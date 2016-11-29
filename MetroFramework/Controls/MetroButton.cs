@@ -81,6 +81,7 @@ namespace MetroFramework.Controls
         #region Fields
 
         private bool highlight = false;
+                [Category("Metro Appearance")]
         public bool Highlight
         {
             get { return highlight; }
@@ -290,7 +291,15 @@ namespace MetroFramework.Controls
             base.OnEnabledChanged(e);
             Invalidate();
         }
-
+        protected override Size DefaultSize
+        {
+            get
+            {
+                // Set the default size of
+                // the control
+                return new Size(125, 35);
+            }
+        }
         #endregion
     }
 }

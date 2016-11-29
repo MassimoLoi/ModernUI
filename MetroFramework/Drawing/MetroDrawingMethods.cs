@@ -21,7 +21,7 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
- using System;
+using System;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -404,7 +404,25 @@ namespace MetroFramework.Drawing
                     return Color.FromArgb(Alpha, iMax, iMid, iMin);
             }
         }
-
+        public static void DrawGradient(Graphics g, Rectangle rect, Color DarkColor, Color LightColor, float Angle, bool EnableBorder, Color BorderColor, float BorderSize)
+        {
+            using (LinearGradientBrush lb = new LinearGradientBrush(rect, LightColor, DarkColor, Angle))
+            {
+                Blend blend1 = new Blend(4);
+                blend1.Positions[0] = 0f;
+                blend1.Factors[0] = 0.9f;
+                blend1.Positions[1] = 0.4f;
+                blend1.Factors[1] = 0.5f;
+                blend1.Positions[2] = 0.4f;
+                blend1.Factors[2] = 0.2f; //0 darker 0.3 lighter (middle line)         
+                blend1.Positions[3] = 1f;
+                blend1.Factors[3] = 1f;
+                lb.Blend = blend1;
+                g.FillRectangle(lb, rect);
+            }
+            if (EnableBorder)
+                g.DrawRectangle(new Pen(BorderColor, BorderSize), rect);
+        }
         #endregion
 
         #region ... Graphic Paths ...
@@ -433,6 +451,51 @@ namespace MetroFramework.Drawing
         public static PointF[] GetPoligonPointsFromPath(GraphicsPath path)
         {
             return path.PathPoints;
+        }
+        #endregion
+
+        #region ... Specific Painting Methods ...
+
+        public static void DrawListViewHeader(Graphics g, Rectangle rect, Color LightColor, Color DarkColor, float Angle)
+        {
+            //check on all whites     
+            if (DarkColor == Color.White) DarkColor = Color.Snow;
+            //fill the light part (top)    
+            using (Brush b = GetBrush(rect, LightColor, DarkColor, PaletteColorStyle.Default, Angle, VisualOrientation.Top, false))
+            {
+                g.FillRectangle(b, rect);
+            }
+        }
+
+
+        public static void PaintDownArrow(Graphics g, Rectangle dropDownRect, Color ArrowColor, int XAdj, int YAdj)
+        {
+            Point middle = new Point(Convert.ToInt32(dropDownRect.Left + dropDownRect.Width / 2), Convert.ToInt32(dropDownRect.Top + dropDownRect.Height / 2));
+
+            //Adjust the middle is width or height is odd - favor pushing it over one pixel right. 
+            //middle.X += (dropDownRect.Width % 2);
+            middle.X += XAdj;
+            middle.Y += YAdj;
+
+            Point[] arrow = new Point[] { new Point(middle.X - 3, middle.Y - 1), new Point(middle.X + 3, middle.Y - 1), new Point(middle.X, middle.Y + 2) };
+
+            //FillPolygon
+            g.DrawPolygon(new Pen(ArrowColor), arrow);
+            g.FillPolygon(new SolidBrush(ArrowColor), arrow);
+        }
+        public static void PaintUpArrow(Graphics g, Rectangle dropDownRect, Color ArrowColor, int XAdj, int YAdj)
+        {
+            Point middle = new Point(Convert.ToInt32(dropDownRect.Left + dropDownRect.Width / 2), Convert.ToInt32(dropDownRect.Top + dropDownRect.Height / 2));
+
+            //Adjust the middle is width or height is odd - favor pushing it over one pixel right. 
+            middle.X += XAdj;
+            middle.Y += YAdj;
+
+            Point[] arrow = new Point[] { new Point(middle.X - 3, middle.Y + 2), new Point(middle.X + 3, middle.Y + 2), new Point(middle.X, middle.Y - 1) };
+
+            //FillPolygon
+            g.DrawPolygon(new Pen(ArrowColor), arrow);
+            g.FillPolygon(new SolidBrush(ArrowColor), arrow);
         }
         #endregion
 

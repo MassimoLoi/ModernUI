@@ -31,8 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.metroSplitContainer1 = new MetroFramework.Controls.MetroSplitContainer();
             this.metroPropertyGrid2 = new MetroFramework.Controls.MetroPropertyGrid();
-            this.metroKnobControl1 = new MetroFramework.Controls.MetroKnobControl();
+            this.metroListView1 = new MetroFramework.Controls.MetroListView();
             this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
+            this.metroScrollBar1 = new MetroFramework.Controls.MetroScrollBar();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.metroTile2 = new MetroFramework.Controls.MetroTile();
             this.mlSelectedTheme = new MetroFramework.Controls.MetroLabel();
@@ -43,15 +44,19 @@
             this.metroTile1 = new MetroFramework.Controls.MetroTile();
             this.metroPropertyGrid1 = new MetroFramework.Controls.MetroPropertyGrid();
             this.metroGroupBox1 = new MetroFramework.Controls.MetroGroupBox();
+            this.metroPanel2 = new MetroFramework.Controls.MetroPanelNoScroll();
+            this.metroMonthCalendar1 = new MetroFramework.Controls.MetroMonthCalendar();
+            this.mlKnobValue = new MetroFramework.Controls.MetroLabel();
+            this.metroKnobControl1 = new MetroFramework.Controls.MetroKnobControl();
             this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
             this.metroRendererManager1 = new MetroFramework.Components.MetroRendererManager(this.components);
-            this.mlKnobValue = new MetroFramework.Controls.MetroLabel();
             this.metroSplitContainer1.Panel1.SuspendLayout();
             this.metroSplitContainer1.Panel2.SuspendLayout();
             this.metroSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             this.metroPanel1.SuspendLayout();
             this.metroGroupBox1.SuspendLayout();
+            this.metroPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // metroSplitContainer1
@@ -90,38 +95,65 @@
             this.metroPropertyGrid2.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
             this.metroPropertyGrid2.Location = new System.Drawing.Point(0, 162);
             this.metroPropertyGrid2.Name = "metroPropertyGrid2";
-            this.metroPropertyGrid2.SelectedObject = this.metroKnobControl1;
+            this.metroPropertyGrid2.SelectedObject = this.metroListView1;
             this.metroPropertyGrid2.Size = new System.Drawing.Size(313, 272);
             this.metroPropertyGrid2.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroPropertyGrid2.StyleManager = this.metroStyleManager1;
             this.metroPropertyGrid2.TabIndex = 8;
             this.metroPropertyGrid2.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
-            // metroKnobControl1
+            // metroListView1
             // 
-            this.metroKnobControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.metroKnobControl1.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.metroKnobControl1.LargeChange = 20;
-            this.metroKnobControl1.Location = new System.Drawing.Point(71, 75);
-            this.metroKnobControl1.Maximum = 100;
-            this.metroKnobControl1.Minimum = 0;
-            this.metroKnobControl1.Name = "metroKnobControl1";
-            this.metroKnobControl1.ShowLargeScale = true;
-            this.metroKnobControl1.ShowSmallScale = false;
-            this.metroKnobControl1.Size = new System.Drawing.Size(265, 196);
-            this.metroKnobControl1.SizeLargeScaleMarker = 6;
-            this.metroKnobControl1.SizeSmallScaleMarker = 3;
-            this.metroKnobControl1.SmallChange = 5;
-            this.metroKnobControl1.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroKnobControl1.StyleManager = this.metroStyleManager1;
-            this.metroKnobControl1.TabIndex = 0;
-            this.metroKnobControl1.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroKnobControl1.Value = 0;
-            this.metroKnobControl1.ValueChanged += new MetroFramework.Controls.ValueChangedEventHandler(this.metroKnobControl1_ValueChanged);
+            this.metroListView1.AlternateRowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.metroListView1.AlternateRowColorEnabled = true;
+            this.metroListView1.AutoSizeLastColumn = true;
+            this.metroListView1.EnableDragDrop = false;
+            this.metroListView1.EnableHeaderGlow = false;
+            this.metroListView1.EnableHeaderHotTrack = false;
+            this.metroListView1.EnableHeaderRendering = true;
+            this.metroListView1.EnableSelectionBorder = false;
+            this.metroListView1.EnableSorting = true;
+            this.metroListView1.EnableVistaCheckBoxes = true;
+            this.metroListView1.FontSize = MetroFramework.MetroListViewSize.Medium;
+            this.metroListView1.FontWeight = MetroFramework.MetroListViewWeight.Regular;
+            this.metroListView1.ForceLeftAlign = false;
+            this.metroListView1.FullRowSelect = true;
+            this.metroListView1.ItemHeight = 0;
+            this.metroListView1.LineAfter = -1;
+            this.metroListView1.LineBefore = -1;
+            this.metroListView1.Location = new System.Drawing.Point(0, 0);
+            this.metroListView1.Name = "metroListView1";
+            this.metroListView1.OwnerDraw = true;
+            this.metroListView1.SelectEntireRowOnSubItem = true;
+            this.metroListView1.Size = new System.Drawing.Size(510, 225);
+            this.metroListView1.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroListView1.StyleManager = this.metroStyleManager1;
+            this.metroListView1.TabIndex = 34;
+            this.metroListView1.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.metroListView1.UseCompatibleStateImageBehavior = false;
+            this.metroListView1.View = System.Windows.Forms.View.Details;
+            this.metroListView1.VScrollbar = this.metroScrollBar1;
             // 
             // metroStyleManager1
             // 
             this.metroStyleManager1.Owner = this;
+            // 
+            // metroScrollBar1
+            // 
+            this.metroScrollBar1.BorderWidth = 1;
+            this.metroScrollBar1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.metroScrollBar1.LargeChange = 10;
+            this.metroScrollBar1.Location = new System.Drawing.Point(492, 0);
+            this.metroScrollBar1.Maximum = 100;
+            this.metroScrollBar1.Minimum = 0;
+            this.metroScrollBar1.MouseWheelBarPartitions = 10;
+            this.metroScrollBar1.Name = "metroScrollBar1";
+            this.metroScrollBar1.Orientation = MetroFramework.Controls.MetroScrollOrientation.Vertical;
+            this.metroScrollBar1.ScrollbarSize = 18;
+            this.metroScrollBar1.Size = new System.Drawing.Size(18, 225);
+            this.metroScrollBar1.TabIndex = 35;
+            this.metroScrollBar1.Text = "metroScrollBar1";
+            this.metroScrollBar1.UseSelectable = true;
             // 
             // metroPanel1
             // 
@@ -132,7 +164,6 @@
             this.metroPanel1.Controls.Add(this.metroLabel21);
             this.metroPanel1.Controls.Add(this.metroTileSwitch);
             this.metroPanel1.Controls.Add(this.metroTile1);
-            this.metroPanel1.CustomBackground = false;
             this.metroPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.metroPanel1.HorizontalScrollbar = false;
             this.metroPanel1.HorizontalScrollbarBarColor = true;
@@ -283,6 +314,8 @@
             // 
             this.metroGroupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.metroGroupBox1.BorderStyle = MetroFramework.Controls.MetroGroupBox.BorderMode.Header;
+            this.metroGroupBox1.Controls.Add(this.metroPanel2);
+            this.metroGroupBox1.Controls.Add(this.metroMonthCalendar1);
             this.metroGroupBox1.Controls.Add(this.mlKnobValue);
             this.metroGroupBox1.Controls.Add(this.metroKnobControl1);
             this.metroGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -304,17 +337,30 @@
             this.metroGroupBox1.Theme = MetroFramework.MetroThemeStyle.Light;
             this.metroGroupBox1.UseStyleColors = false;
             // 
-            // metroToolTip1
+            // metroPanel2
             // 
-            this.metroToolTip1.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroToolTip1.StyleManager = null;
-            this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.metroPanel2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.metroPanel2.BorderWidth = 1;
+            this.metroPanel2.Controls.Add(this.metroScrollBar1);
+            this.metroPanel2.Controls.Add(this.metroListView1);
+            this.metroPanel2.Location = new System.Drawing.Point(35, 394);
+            this.metroPanel2.Name = "metroPanel2";
+            this.metroPanel2.PaintBackColor = true;
+            this.metroPanel2.Size = new System.Drawing.Size(510, 225);
+            this.metroPanel2.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroPanel2.StyleManager = this.metroStyleManager1;
+            this.metroPanel2.TabIndex = 37;
+            this.metroPanel2.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.metroPanel2.UseCompatibleStateImageBehavior = false;
             // 
-            // metroRendererManager1
+            // metroMonthCalendar1
             // 
-            this.metroRendererManager1.Renderers = MetroFramework.Components.Renderer.MetroRenderer;
-            this.metroRendererManager1.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroRendererManager1.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.metroMonthCalendar1.Location = new System.Drawing.Point(318, 110);
+            this.metroMonthCalendar1.Name = "metroMonthCalendar1";
+            this.metroMonthCalendar1.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroMonthCalendar1.StyleManager = this.metroStyleManager1;
+            this.metroMonthCalendar1.TabIndex = 33;
+            this.metroMonthCalendar1.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
             // mlKnobValue
             // 
@@ -333,6 +379,41 @@
             this.mlKnobValue.Theme = MetroFramework.MetroThemeStyle.Light;
             this.mlKnobValue.UseStyleColors = false;
             // 
+            // metroKnobControl1
+            // 
+            this.metroKnobControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.metroKnobControl1.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.metroKnobControl1.LargeChange = 20;
+            this.metroKnobControl1.Location = new System.Drawing.Point(71, 75);
+            this.metroKnobControl1.Maximum = 100;
+            this.metroKnobControl1.Minimum = 0;
+            this.metroKnobControl1.Name = "metroKnobControl1";
+            this.metroKnobControl1.ShowLargeScale = true;
+            this.metroKnobControl1.ShowSmallScale = false;
+            this.metroKnobControl1.Size = new System.Drawing.Size(265, 196);
+            this.metroKnobControl1.SizeLargeScaleMarker = 6;
+            this.metroKnobControl1.SizeSmallScaleMarker = 3;
+            this.metroKnobControl1.SmallChange = 5;
+            this.metroKnobControl1.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroKnobControl1.StyleManager = this.metroStyleManager1;
+            this.metroKnobControl1.TabIndex = 0;
+            this.metroKnobControl1.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.metroKnobControl1.UseStyleColors = false;
+            this.metroKnobControl1.Value = 0;
+            this.metroKnobControl1.ValueChanged += new MetroFramework.Controls.ValueChangedEventHandler(this.metroKnobControl1_ValueChanged);
+            // 
+            // metroToolTip1
+            // 
+            this.metroToolTip1.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroToolTip1.StyleManager = null;
+            this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
+            // metroRendererManager1
+            // 
+            this.metroRendererManager1.Renderers = MetroFramework.Components.Renderer.MetroRenderer;
+            this.metroRendererManager1.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroRendererManager1.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
             // DemoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -350,6 +431,7 @@
             this.metroPanel1.PerformLayout();
             this.metroGroupBox1.ResumeLayout(false);
             this.metroGroupBox1.PerformLayout();
+            this.metroPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -373,5 +455,9 @@
         private Controls.MetroTile metroTile2;
         private Controls.MetroKnobControl metroKnobControl1;
         private Controls.MetroLabel mlKnobValue;
+        private Controls.MetroMonthCalendar metroMonthCalendar1;
+        private Controls.MetroListView metroListView1;
+        private Controls.MetroScrollBar metroScrollBar1;
+        private Controls.MetroPanelNoScroll metroPanel2;
     }
 }

@@ -14,6 +14,45 @@ namespace MetroFramework.Demo
         public DemoForm()
         {
             InitializeComponent();
+
+            DataTable _table = new DataTable();
+            _table.ReadXml(Application.StartupPath + @"\Data\Books.xml");
+            PopulateFullListView(_table, 3);
+        }
+
+
+        private void PopulateFullListView(DataTable _table, int _colCount)
+        {
+            // Clear the ListView control
+            metroListView1.Items.Clear();
+            int ColCount = _table.Columns.Count;
+
+            if (_colCount != 0)
+                ColCount = _colCount;
+
+            //Add columns
+            for (int k = 0; k < ColCount; k++)
+            {
+                metroListView1.Columns.Add(_table.Columns[k].ColumnName);
+            }
+            // Display items in the ListView control
+            for (int i = 0; i < _table.Rows.Count; i++)
+            {
+                DataRow drow = _table.Rows[i];
+
+                // Only row that have not been deleted
+                if (drow.RowState != DataRowState.Deleted)
+                {
+                    // Define the list items
+                    ListViewItem lvi = new ListViewItem(drow[0].ToString());
+                    for (int j = 1; j < ColCount; j++)
+                    {
+                        lvi.SubItems.Add(drow[j].ToString());
+                    }
+                    // Add the list items to the ListView
+                    metroListView1.Items.Add(lvi);
+                }
+            }
         }
 
         private void metroTileSwitch_Click(object sender, EventArgs e)
@@ -46,5 +85,11 @@ namespace MetroFramework.Demo
             mlKnobValue.Text = metroKnobControl1.Value.ToString();
         }
 
+
+
+
+
     }
+
 }
+

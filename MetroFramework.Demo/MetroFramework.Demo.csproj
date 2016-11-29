@@ -142,6 +142,7 @@
     <Content Include="Data\Books.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\color_swatch.png" />
     <None Include="Resources\preview.ico" />
     <None Include="Resources\printer3.ico" />
     <None Include="Resources\help.ico" />

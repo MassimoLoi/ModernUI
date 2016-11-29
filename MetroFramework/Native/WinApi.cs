@@ -459,6 +459,23 @@ namespace MetroFramework.Native
         public const int WH_CALLWNDPROC = 4;
         public const int GWL_WNDPROC = -4;
 
+        public const int WM_NCCALCSIZE = 0x83;
+        public const int WM_WINDOWPOSCHANGING = 0x46;
+        public const int WM_PAINT = 0xF;
+        public const int WM_CREATE = 0x1;
+        public const int WM_NCCREATE = 0x81;
+        public const int WM_NCPAINT = 0x85;
+        public const int WM_PRINT = 0x317;
+        public const int WM_DESTROY = 0x2;
+        public const int WM_SHOWWINDOW = 0x18;
+        public const int WM_SHARED_MENU = 0x1E2;
+        public const int WM_PARENTNOTIFY = 0x210; 
+        public const int WM_HSCROLL = 0x114; 
+        public const int WM_NCHITTEST = 0x84; 
+        public const int WM_ERASEBKGND = 0x0014; // WM_ERASEBKGND message                          
+  
+
+
         #endregion
 
         #region API Calls
@@ -562,6 +579,8 @@ namespace MetroFramework.Native
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         internal static extern bool GetWindowRect(IntPtr hWnd, [In, Out] ref Rectangle rect);
 
+        [DllImport("uxtheme.dll")]
+        public static extern int SetWindowTheme(IntPtr hwnd, string appname, string idlist); 
         #endregion
 
         #region Helper Methods
